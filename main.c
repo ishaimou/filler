@@ -54,6 +54,7 @@ void	init_fil(t_filler *fil)
 	fil->pl = 0;
 	fil->op = 0;
 	fil->flag = 0;
+	fil->score = INT_MAX;
 }
 
 void	free_dbl(char ***tab)
@@ -88,14 +89,15 @@ void	free_hmap(int ***tab, int size)
 int		main(void)
 {
 	t_filler	fil;
-	int 		i = 8;
+//	int 		i = 8;
 
 	init_fil(&fil);
-	while (i--)
+	while (1)
 	{
 		get_env(&fil);
 		create_hmap(&fil);
 		generate_heat(&fil);
+		/*
 		printf("pl = %c; op = %c\n", fil.pl, fil.op);
 		printf("h = %d; w = %d\n", fil.h, fil.w);
 		print_map(fil.map);
@@ -103,7 +105,9 @@ int		main(void)
 		printf("pc_h = %d; pc_w = %d\n", fil.pc_h, fil.pc_w);
 		printf("offset_x = %d; offset_y = %d\n", fil.offset_x, fil.offset_y);
 		print_map(fil.pc);
+		*/
 		craft_piece(&fil);
+		/*
 		printf("\npiece after\n");
 		printf("pc_h = %d; pc_w = %d\n", fil.pc_h, fil.pc_w);
 		printf("offset_x = %d; offset_y = %d\n", fil.offset_x, fil.offset_y);
@@ -111,6 +115,8 @@ int		main(void)
 		printf("\n\n");
 		print_hmap(fil);
 		printf("\n\n");
+		*/
+		get_coord(&fil);
 		free_dbl(&fil.map);
 		free_dbl(&fil.pc);
 		free_hmap(&fil.hmap, fil.h);

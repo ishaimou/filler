@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <limits.h>
 # include "libft/libft.h"
 
 typedef struct		s_filler
@@ -34,6 +35,7 @@ typedef struct		s_filler
 	char			pl;
 	char			op;
 	int				flag;
+	int				score;
 }					t_filler;
 
 void	init_fil(t_filler *fil);
@@ -41,6 +43,7 @@ void	get_env(t_filler *fil);
 void	create_hmap(t_filler *fil);
 void	generate_heat(t_filler *fil);
 void	craft_piece(t_filler *fil);
+void	get_coord(t_filler *fil);
 int		is_dots(char *s);
 
 #endif
