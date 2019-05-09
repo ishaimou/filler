@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:11:28 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/09 00:10:00 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/09 01:07:24 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static void	craft_piece_w(t_filler *fil)
 
 	if ((max_w = get_max_w(fil)))
 	{
-		printf("max_w = %d\n", max_w);
 		fil->pc_w = max_w + 1;
 		i = 0;
 		while (i < fil->pc_h)

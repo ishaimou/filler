@@ -6,7 +6,7 @@
 #    By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/09 00:12:48 by ishaimou          #+#    #+#              #
-#    Updated: 2019/05/09 00:30:36 by ishaimou         ###   ########.fr        #
+#    Updated: 2019/05/09 01:17:27 by ishaimou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ H_DIR = ./includes
 
 FLAGS = -Wall -Werror -Wextra
 
-SRCS = craft_piece.c create_hmap.c read_env.c tools.c main.c
+SRCS = algo.c craft_piece.c create_hmap.c read_env.c tools.c main.c
 
 SRCS_DIR = $(addprefix srcs/, $(SRCS))
 
