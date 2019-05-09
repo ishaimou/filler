@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   filler.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/08 23:20:51 by ishaimou          #+#    #+#             */
+/*   Updated: 2019/05/09 00:01:50 by ishaimou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FILLER_H
 # define FILLER_H
 
@@ -15,8 +27,8 @@ typedef struct		s_filler
 	char			**pc;
 	int				pc_h;
 	int				pc_w;
-	int				fstar_x;
-	int				fstar_y;	
+	int				offset_x;
+	int				offset_y;
 	int				w;
 	int				h;
 	char			pl;
@@ -29,5 +41,6 @@ void	get_env(t_filler *fil);
 void	create_hmap(t_filler *fil);
 void	generate_heat(t_filler *fil);
 void	craft_piece(t_filler *fil);
+int		is_dots(char *s);
 
 #endif

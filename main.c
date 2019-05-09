@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/08 23:20:36 by ishaimou          #+#    #+#             */
+/*   Updated: 2019/05/08 23:59:44 by ishaimou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 void	print_map(char **map)
@@ -35,6 +47,8 @@ void	init_fil(t_filler *fil)
 	fil->pc = NULL;
 	fil->pc_h = 0;
 	fil->pc_w = 0;
+	fil->offset_x = 0;
+	fil->offset_y = 0;
 	fil->w = 0;
 	fil->h = 0;
 	fil->pl = 0;
@@ -87,10 +101,12 @@ int		main(void)
 		print_map(fil.map);
 		printf("\npiece before\n");
 		printf("pc_h = %d; pc_w = %d\n", fil.pc_h, fil.pc_w);
+		printf("offset_x = %d; offset_y = %d\n", fil.offset_x, fil.offset_y);
 		print_map(fil.pc);
-		//craft_piece(&fil);
+		craft_piece(&fil);
 		printf("\npiece after\n");
 		printf("pc_h = %d; pc_w = %d\n", fil.pc_h, fil.pc_w);
+		printf("offset_x = %d; offset_y = %d\n", fil.offset_x, fil.offset_y);
 		print_map(fil.pc);
 		printf("\n\n");
 		print_hmap(fil);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_env.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/08 23:21:10 by ishaimou          #+#    #+#             */
+/*   Updated: 2019/05/09 00:10:01 by ishaimou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "filler.h"
 
 static void	get_pl(t_filler *fil)
@@ -87,5 +99,7 @@ void	get_env(t_filler *fil)
 	}
 	get_map(fil);
 	get_pc(fil);
+	fil->offset_x = 0;
+	fil->offset_y = 0;
 	fil->flag = 1;
 }
