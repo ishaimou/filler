@@ -1,4 +1,4 @@
-$$$ exec p1 : [./resources-filler/players/carli.filler]
+$$$ exec p2 : [./resources-filler/players/carli.filler]
 Plateau 24 40:
     0123456789012345678901234567890123456789
 000 ........................................

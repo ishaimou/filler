@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 01:17:11 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/09 01:40:34 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:15:14 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,22 @@ int		get_score(t_filler *fil, int x, int y)
 {
 	int		i;
 	int		j;
+	int		tmpx;
+	int		tmpy;
 	int		count;
 
-	i = -1;
 	count = 0;
+	tmpx = x - fil->offset_x;
+	tmpy = y - fil->offset_y;
+	i = fil->offset_y - 1;
 	while (++i < fil->pc_h)
 	{
-		j = -1;
+		j = fil->offset_x - 1;
 		while (++j < fil->pc_w)
-			count += fil->hmap[i + y][j + x];
+		{
+			if (fil->pc[i][j] == '*')
+				count += fil->hmap[tmpy + i][tmpx + j];
+		}
 	}
 	return (count);
 }
@@ -36,7 +43,8 @@ static	int rule1(t_filler *fil, int x, int y)
 
 	diff_x = fil->w - x;
 	diff_y = fil->h - y;
-	if ((diff_x >= fil->pc_w) && (diff_y >= fil->pc_h))
+	if ((diff_x >= fil->pc_w - fil->offset_x)
+			&& (diff_y >= fil->pc_h - fil->offset_y))
 		return (1);
 	return (0);
 }
@@ -45,18 +53,22 @@ static int	rule2(t_filler *fil, int x, int y)
 {
 	int		i;
 	int		j;
+	int		tmpy;
+	int		tmpx;
 	int		count;
 
 	count = 0;
-	i = -1;
+	tmpx = x - fil->offset_x;
+	tmpy = y - fil->offset_y;
+	i = fil->offset_y - 1;
 	while (++i < fil->pc_h)
 	{
-		j = -1;
+		j = fil->offset_x - 1;
 		while (++j < fil->pc_w)
 		{
-			if (fil->pc[i][j] == '*' && fil->hmap[y + i][x + j] == -1)
+			if (fil->pc[i][j] == '*' && fil->hmap[tmpy + i][tmpx + j] == -2)
 				count++;
-			if (fil->hmap[y + i][x + j] == -2)
+			if (fil->hmap[tmpy + i][tmpx + j] == -1)
 				return (0);
 		}
 		if (count > 1)

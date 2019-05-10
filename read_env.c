@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:21:10 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/09 01:16:28 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:24:47 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	get_hw(t_filler *fil)
 	free(tmp); 
 }
 
-static void	get_map(t_filler *fil)
+static int	get_map(t_filler *fil)
 {
 	char	*line;
 	int		i;
@@ -46,7 +46,12 @@ static void	get_map(t_filler *fil)
 	i = -1;
 	while (++i < 1 + fil->flag)
 	{
-		get_next_line(0, &line);
+		if (get_next_line(0, &line) <= 0)
+		{
+			free(line);
+			line = NULL;
+			return (-1);
+		}
 		free(line);
 		line = NULL;
 	}
@@ -60,6 +65,7 @@ static void	get_map(t_filler *fil)
 		free(line);
 		line = NULL;
 	}
+	return (0);
 }
 
 static void	get_pc(t_filler *fil)
@@ -89,17 +95,18 @@ static void	get_pc(t_filler *fil)
 		line = NULL;
 	}
 }
-
-void	get_env(t_filler *fil)
+int		get_env(t_filler *fil)
 {
 	if (!fil->flag)
 	{
 		get_pl(fil);
 		get_hw(fil);
 	}
-	get_map(fil);
+	if (get_map(fil) == -1)
+		return (-1);
 	get_pc(fil);
 	fil->offset_x = 0;
 	fil->offset_y = 0;
 	fil->flag = 1;
+	return (0);
 }
