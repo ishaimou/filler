@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:20:51 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/10 18:31:19 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:37:43 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
-# include "libft/libft.h"
+# include "libft.h"
 
 typedef struct		s_filler
 {

@@ -6,7 +6,7 @@
 #    By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/09 00:12:48 by ishaimou          #+#    #+#              #
-#    Updated: 2019/05/10 18:33:30 by ishaimou         ###   ########.fr        #
+#    Updated: 2019/05/10 18:39:55 by ishaimou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ all: $(NAME)
 $(NAME):
 	@make -C $(LIB_DIR)
 	@echo "$(BGREEN)$(LIB_NAME) has been created successfully.$(RESET)"
-	@gcc -o $(NAME) $(SRCS) -I $(H_DIR) $(LIB) $(FLAGS)
+	@gcc -o $(NAME) $(SRCS_DIR) -I $(H_DIR) -I $(LIB_DIR) $(LIB) $(FLAGS)
 	@echo "$(BGREEN)$(NAME) has been created successfully.$(RESET)"
 
 clean:
