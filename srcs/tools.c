@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:22:58 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/10 18:33:37 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/11 00:27:47 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		is_dots(char *s)
 	{
 		if (*s != '.')
 			return (0);
-		s++;	
+		s++;
 	}
 	return (1);
 }
@@ -37,6 +37,8 @@ void	init_fil(t_filler *fil)
 	fil->pl = 0;
 	fil->op = 0;
 	fil->flag = 0;
+	fil->x_coord = 0;
+	fil->y_coord = 0;
 	fil->score = INT_MAX;
 }
 

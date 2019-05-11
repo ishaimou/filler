@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:11:28 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/09 01:07:24 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/10 23:09:22 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	get_max_w(t_filler *fil)
 	int		i;
 	int		j;
 	int		max_w;
-	
+
 	i = -1;
 	max_w = 0;
 	while (++i < fil->pc_h)
@@ -54,7 +54,7 @@ static void	craft_piece_h(t_filler *fil)
 	int		i;
 
 	i = fil->pc_h;
-	while (--i >= 0 &&  is_dots(fil->pc[i]))
+	while (--i >= 0 && is_dots(fil->pc[i]))
 	{
 		free(fil->pc[i]);
 		fil->pc[i] = NULL;
@@ -85,7 +85,7 @@ static void	get_offset(t_filler *fil)
 	fil->offset_x = (min_w != fil->pc_w - 1) ? min_w : 0;
 }
 
-void	craft_piece(t_filler *fil)
+void		craft_piece(t_filler *fil)
 {
 	craft_piece_h(fil);
 	craft_piece_w(fil);

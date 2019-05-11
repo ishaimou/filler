@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:20:51 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/10 18:37:43 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/10 23:44:54 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,18 @@ typedef struct		s_filler
 	char			op;
 	int				flag;
 	int				score;
+	int				x_coord;
+	int				y_coord;
 }					t_filler;
 
-void	init_fil(t_filler *fil);
-int		get_env(t_filler *fil);
-void	create_hmap(t_filler *fil);
-void	generate_heat(t_filler *fil);
-void	craft_piece(t_filler *fil);
-void	get_coord(t_filler *fil);
-void	free_fil(t_filler *fil);
-int		is_dots(char *s);
+void				init_fil(t_filler *fil);
+int					get_env(t_filler *fil);
+void				create_hmap(t_filler *fil);
+void				generate_heat(t_filler *fil);
+void				craft_piece(t_filler *fil);
+void				get_coord(t_filler *fil);
+void				free_fil(t_filler *fil);
+int					is_valid_pos(t_filler *fil, int x, int y);
+int					is_dots(char *s);
 
 #endif

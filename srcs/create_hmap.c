@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 00:10:40 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/09 00:10:45 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/10 23:11:47 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static void	init_hmap_i(t_filler *fil, int i)
 	}
 }
 
-void	create_hmap(t_filler *fil)
+void		create_hmap(t_filler *fil)
 {
 	int		i;
-	
+
 	i = 0;
 	fil->hmap = (int**)ft_memalloc(sizeof(int*) * fil->h);
 	while (i < fil->h)
@@ -66,7 +66,7 @@ static void	heat_up(t_filler *fil, int i, int j, int x)
 		fil->hmap[i][j] = x + 1;
 }
 
-void	generate_heat(t_filler *fil)
+void		generate_heat(t_filler *fil)
 {
 	int		i;
 	int		j;
@@ -75,7 +75,7 @@ void	generate_heat(t_filler *fil)
 	i = 0;
 	x = 0;
 	while (x < fil->w)
-	{	
+	{
 		while (i < fil->h)
 		{
 			j = 0;

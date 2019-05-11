@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:21:10 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/10 18:24:47 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/11 00:26:29 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	get_hw(t_filler *fil)
 	while (ft_isdigit(*line))
 		line++;
 	fil->w = ft_atoi(line + 1);
-	free(tmp); 
+	free(tmp);
 }
 
 static int	get_map(t_filler *fil)
@@ -49,7 +49,6 @@ static int	get_map(t_filler *fil)
 		if (get_next_line(0, &line) <= 0)
 		{
 			free(line);
-			line = NULL;
 			return (-1);
 		}
 		free(line);
@@ -95,7 +94,8 @@ static void	get_pc(t_filler *fil)
 		line = NULL;
 	}
 }
-int		get_env(t_filler *fil)
+
+int			get_env(t_filler *fil)
 {
 	if (!fil->flag)
 	{
