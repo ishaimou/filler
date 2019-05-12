@@ -37,6 +37,7 @@ void	init_fil(t_filler *fil)
 	fil->pl = 0;
 	fil->op = 0;
 	fil->flag = 0;
+	fil->lastmv = 0;
 	fil->x_coord = 0;
 	fil->y_coord = 0;
 	fil->score = INT_MAX;

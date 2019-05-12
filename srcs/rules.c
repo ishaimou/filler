@@ -44,7 +44,7 @@ static int	rule2(t_filler *fil, int x, int y)
 		{
 			if (fil->pc[i][j] == '*' && fil->hmap[tmpy + i][tmpx + j] == -2)
 				count++;
-			if (fil->hmap[tmpy + i][tmpx + j] == -1)
+			if (fil->pc[i][j] == '*' && fil->hmap[tmpy + i][tmpx + j] == -1)
 				return (0);
 		}
 		if (count > 1)

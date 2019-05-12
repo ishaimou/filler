@@ -35,6 +35,7 @@ typedef struct		s_filler
 	char			pl;
 	char			op;
 	int				flag;
+	int				lastmv;
 	int				score;
 	int				x_coord;
 	int				y_coord;

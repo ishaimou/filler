@@ -38,6 +38,7 @@ int			get_score(t_filler *fil, int x, int y)
 
 static int	get_tmp_score(t_filler *fil, int x, int y, int tmp)
 {
+	fil->lastmv = 0;
 	tmp = get_score(fil, x, y);
 	if (tmp < fil->score)
 	{
@@ -58,6 +59,7 @@ void		get_coord(t_filler *fil)
 
 	i = -1;
 	tmp = 0;
+	fil->lastmv = 1;
 	while (++i < fil->h)
 	{
 		j = -1;
@@ -69,6 +71,6 @@ void		get_coord(t_filler *fil)
 	}
 	x = fil->x_coord - fil->offset_x;
 	y = fil->y_coord - fil->offset_y;
-	ft_printf("%d %d\n", y, x);
+	(!fil->lastmv) ? ft_printf("%d %d\n", y, x) : ft_printf("0 0\n");
 	fil->score = INT_MAX;
 }
