@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:32:51 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/13 03:13:30 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/13 07:43:14 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ int		main(int argc, char *argv[])
 {
 	SDL_Event	event;
 	t_visual	v;
-	t_parser	p;
 
-	if (!init(&v))
+	if (!init_visual(&v))
 		return (0);
 	if (!load_media(&v))
 		return (0);

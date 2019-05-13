@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 01:51:21 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/13 03:13:29 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/13 07:45:34 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,15 @@ typedef struct			s_visual
 	SDL_Texture			*bg_tex;
 	SDL_AudioDeviceID	device_id;
 	Uint8				*wav_buffer;
-}						t_visual;
-
-typedef struct			s_parser
-{
 	t_dlist				*lst;
 	int					map_h;
 	int					map_w;
-	char				pl;
-	char				op;
-	char				*pl_name;
-	char				*op_name;
+	char				*p1_name;
+	char				*p2_name;
 
-}						t_parser;
+}						t_visual;
 
-int		init(t_visual *v);
+int		init_visual(t_visual *v);
 int		load_media(t_visual *v);
 int		load_audio(t_visual *v);
 void	ft_sdlclose(t_visual *v);

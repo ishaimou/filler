@@ -6,13 +6,13 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:34:24 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/13 02:35:57 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/13 07:45:34 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visualizer.h"
 
-int		init(t_visual *v)
+static int		init(t_visual *v)
 {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
 	{
@@ -40,17 +40,19 @@ int		init(t_visual *v)
 	return (1);
 }
 
-void	ft_sdlclose(t_visual *v)
+int		init_visual(t_visual *v)
 {
-	SDL_CloseAudioDevice(v->device_id);
-	SDL_FreeWAV(v->wav_buffer);
-	v->wav_buffer = NULL;
-	SDL_DestroyTexture(v->bg_tex);
-	v->bg_tex = NULL;
-	SDL_DestroyRenderer(v->renderer);
-	v->renderer = NULL;
-	SDL_DestroyWindow(v->window);
 	v->window = NULL;
-	IMG_Quit();
-	SDL_Quit();
+	v->renderer = NULL;
+	v->bg_tex = NULL;
+	v->wav_buffer = NULL;
+	v->device_id = 0;
+	v->lst = NULL;
+	v->map_h = 0;
+	v->map_w = 0;
+	v->p1_name = NULL;
+	v->p2_name = NULL;
+	if (!init(v))
+		return (0);
+	return (1);
 }
