@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 01:17:11 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/10 23:47:45 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/13 00:36:51 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int			get_score(t_filler *fil, int x, int y)
 
 static int	get_tmp_score(t_filler *fil, int x, int y, int tmp)
 {
-	fil->lastmv = 0;
 	tmp = get_score(fil, x, y);
 	if (tmp < fil->score)
 	{
@@ -59,7 +58,6 @@ void		get_coord(t_filler *fil)
 
 	i = -1;
 	tmp = 0;
-	fil->lastmv = 1;
 	while (++i < fil->h)
 	{
 		j = -1;
@@ -71,6 +69,8 @@ void		get_coord(t_filler *fil)
 	}
 	x = fil->x_coord - fil->offset_x;
 	y = fil->y_coord - fil->offset_y;
-	(!fil->lastmv) ? ft_printf("%d %d\n", y, x) : ft_printf("0 0\n");
+	ft_printf("%d %d\n", y, x);
 	fil->score = INT_MAX;
+	fil->x_coord = 0;
+	fil->y_coord = 0;
 }
