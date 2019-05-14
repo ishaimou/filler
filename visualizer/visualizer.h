@@ -14,8 +14,8 @@
 # define VISUALIZER_H
 
 //Screen dimension macros
-#define SCREEN_WIDTH 1600
-#define SCREEN_HEIGHT 900
+#define SCREEN_WIDTH  640 
+#define SCREEN_HEIGHT 480
 
 # include <SDL.h>
 # include <SDL_image.h>
@@ -25,7 +25,9 @@
 typedef struct			s_dlist
 {
 	char				**map;
-	char				**piece;
+	char				**pc;
+	int					pc_h;
+	int					pc_w;
 	int					curr_p;
 	struct s_dlist		*next;
 	struct s_dlist		*prev;
@@ -43,13 +45,14 @@ typedef struct			s_visual
 	int					map_w;
 	char				*p1_name;
 	char				*p2_name;
-
+	int					flag;
 }						t_visual;
 
 int		init_visual(t_visual *v);
 int		load_media(t_visual *v);
 int		load_audio(t_visual *v);
 void	ft_sdlclose(t_visual *v);
-
+int		parser(t_visual *v, t_dlist *node);
+int		rec_game(t_visual *v);
 
 #endif

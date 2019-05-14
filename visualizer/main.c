@@ -36,6 +36,8 @@ int		main(int argc, char *argv[])
 		SDL_RenderClear(v.renderer);
 		SDL_RenderCopy(v.renderer, v.bg_tex, NULL, NULL);
 		SDL_RenderPresent(v.renderer);
+		if (!rec_game(&v))
+			break;
 	}
 	ft_sdlclose(&v);
 	return (0);

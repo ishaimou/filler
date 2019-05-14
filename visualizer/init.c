@@ -52,6 +52,7 @@ int		init_visual(t_visual *v)
 	v->map_w = 0;
 	v->p1_name = NULL;
 	v->p2_name = NULL;
+	v->flag = 0;
 	if (!init(v))
 		return (0);
 	return (1);
