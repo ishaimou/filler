@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 01:51:21 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/13 07:45:34 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/15 01:10:23 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,8 @@ int		load_audio(t_visual *v);
 void	ft_sdlclose(t_visual *v);
 int		parser(t_visual *v, t_dlist *node);
 int		rec_game(t_visual *v);
+void	print_map(char **map);
+void	print_list(t_dlist *begin);
+int		ft_list_size(t_dlist *begin_list);
 
 #endif

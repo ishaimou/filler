@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:39:24 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/13 03:13:28 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/15 01:10:22 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	get_map(t_visual *v, t_dlist *node)
 		if (get_next_line(0, &line) <= 0)
 		{
 			free(line);
-			return (0);
+			return (-1);
 		}
 		free(line);
 		line = NULL;
@@ -160,9 +160,39 @@ void	get_pc(t_visual *v, t_dlist *node)
 	}
 }
 
+int		get_curr_player(t_visual *v, t_dlist *node)
+{
+	char	*tmp;
+	char	*line;
+
+	get_next_line(0, &line);
+	if (!ft_strstr(line, "got"))
+	{
+		free(line);
+		return (0);
+	}
+	tmp = line;
+	while (*line && (*line != 'O' || *line != 'X'))
+		line++;
+	if (!*line)
+	{
+		free(tmp);
+		return (0);
+	}
+	if (*line == 'O')
+		node->curr_p = 1;
+	else if (*line == 'X')
+		node->curr_p = 2;
+	else
+		node->curr_p = 0;
+	free(tmp);
+	return (1);	
+}
+
 int		parser(t_visual *v, t_dlist *node)
 {
 	char *line;
+	int	success;
 
 	if (!v->flag)
 	{
@@ -171,11 +201,13 @@ int		parser(t_visual *v, t_dlist *node)
 		if (!get_hw(v))
 			return (0);
 	}
-	if (!get_map(v, node))
+	if (!(success = get_map(v, node)))
 		return (0);
+	if (success == -1)
+		return (-1);
 	get_pc(v, node);
-	get_next_line(0, &line);
-	free(line);
+	if (!get_curr_player(v, node))
+		return (0);
 	v->flag = 1;
 	return (1);
 }
@@ -213,27 +245,18 @@ t_dlist	*ft_dlst_addnode(t_dlist **head)
 	return (tmp->next);
 }
 
-void	print_map(char **map)
-{
-	while (*map)
-	{
-		printf("%s\n", *map);
-		map++;
-	}
-}
-
 int		rec_game(t_visual *v)
 {
 	t_dlist	*node;
+	int		success;
 
-	node = ft_dlst_addnode(&(v->lst));
-	if (!parser(v, node))
-		return (0);
-	print_map(node->map);
-	printf("\n");
-	print_map(node->pc);
+	while (1)
+	{	
+		node = ft_dlst_addnode(&(v->lst));
+		if (!(success = parser(v, node)))
+			return (0);
+		if (success == -1)
+			break;
+	}
 	return (1);	
 }
-
-
-
