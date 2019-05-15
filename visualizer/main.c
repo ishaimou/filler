@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:32:51 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/15 01:10:23 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/15 03:31:02 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ int		main(int argc, char *argv[])
 	
 	if (!rec_game(&v))
 		return (0);
-	//ft_printf("%d\n", ft_list_size(v.lst));
+	ft_printf("%d\n", ft_list_size(v.lst));
 	//print_list(v.lst);
 	printf("p1 = %s\n", v.p1_name);
 	printf("p2 = %s\n", v.p2_name);
 	printf("map_h = %d\n", v.map_h);
 	printf("map_w = %d\n", v.map_w);
+	printf("res_p1 = %d; res_p2 = %d\n", v.res_p1, v.res_p2);
 	SDL_PauseAudioDevice(v.device_id, 0);
 	while (1)
 	{

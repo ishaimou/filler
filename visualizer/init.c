@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:34:24 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/13 07:45:34 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/15 03:16:47 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int		init_visual(t_visual *v)
 	v->map_w = 0;
 	v->p1_name = NULL;
 	v->p2_name = NULL;
+	v->res_p1 = 0;
+	v->res_p2 = 0;
 	v->flag = 0;
 	if (!init(v))
 		return (0);

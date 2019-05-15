@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 01:51:21 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/15 01:10:23 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/15 03:08:33 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct			s_visual
 	int					map_w;
 	char				*p1_name;
 	char				*p2_name;
+	int					res_p1;
+	int					res_p2;
 	int					flag;
 }						t_visual;
 

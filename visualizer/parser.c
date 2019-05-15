@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:39:24 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/15 01:10:22 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/15 03:31:00 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,45 +80,29 @@ int			get_players(t_visual *v)
 	return (1);
 }
 
-int	get_hw(t_visual *v)
+void	get_hw(t_visual *v, char **s)
 {
-	char	*line;
 	char	*tmp;
 
-	get_next_line(0, &line);
-	if (!ft_strstr(line, "Plateau"))
-	{
-		ft_printf("Error reading map dimensions\n");
-		free(line);
-		return (0);
-	}
-	tmp = line;
-	while (*line && !ft_isdigit(*line))
-		line++;
-	v->map_h = ft_atoi(line);
-	while (ft_isdigit(*line))
-		line++;
-	v->map_w = ft_atoi(line + 1);
+	tmp = *s;
+	while (**s && !ft_isdigit(**s))
+		(*s)++;
+	v->map_h = ft_atoi(*s);
+	while (ft_isdigit(**s))
+		(*s)++;
+	v->map_w = ft_atoi(*s + 1);
 	free(tmp);
-	return (1);
+	*s = NULL;
 }
 
-int	get_map(t_visual *v, t_dlist *node)
+void	get_map(t_visual *v, t_dlist *node)
 {
 	char	*line;
 	int		i;
 
-	i = -1;
-	while (++i < 1 + v->flag)
-	{
-		if (get_next_line(0, &line) <= 0)
-		{
-			free(line);
-			return (-1);
-		}
-		free(line);
-		line = NULL;
-	}
+	get_next_line(0, &line);
+	free(line);
+	line = NULL;
 	i = -1;
 	node->map = (char**)ft_memalloc(sizeof(char*) * (v->map_h + 1));
 	node->map[v->map_h] = NULL;
@@ -129,26 +113,24 @@ int	get_map(t_visual *v, t_dlist *node)
 		free(line);
 		line = NULL;
 	}
-	return (1);
 }
 
-void	get_pc(t_visual *v, t_dlist *node)
+void	get_pc(t_visual *v, t_dlist *node, char **s)
 {
 	char	*line;
 	char	*tmp;
 	int		i;
 
 	i = -1;
-	get_next_line(0, &line);
-	tmp = line;
-	while (*line && !ft_isdigit(*line))
-		line++;
-	node->pc_h = ft_atoi(line);
-	while (*line && ft_isdigit(*line))
-		line++;
-	node->pc_w = ft_atoi(line + 1);
+	tmp = *s;
+	while (**s && !ft_isdigit(**s))
+		(*s)++;
+	node->pc_h = ft_atoi(*s);
+	while (**s && ft_isdigit(**s))
+		(*s)++;
+	node->pc_w = ft_atoi(*s + 1);
 	free(tmp);
-	line = NULL;
+	*s = NULL;
 	node->pc = (char**)ft_memalloc(sizeof(char*) * (node->pc_h + 1));
 	node->pc[node->pc_h] = NULL;
 	while (++i < node->pc_h)
@@ -160,28 +142,21 @@ void	get_pc(t_visual *v, t_dlist *node)
 	}
 }
 
-int		get_curr_player(t_visual *v, t_dlist *node)
+int		get_curr_player(t_visual *v, t_dlist *node, char **s)
 {
 	char	*tmp;
-	char	*line;
 
-	get_next_line(0, &line);
-	if (!ft_strstr(line, "got"))
-	{
-		free(line);
-		return (0);
-	}
-	tmp = line;
-	while (*line && (*line != 'O' || *line != 'X'))
-		line++;
-	if (!*line)
+	tmp = *s;
+	while (**s && **s != 'O' && **s != 'X')
+		(*s)++;
+	if (!**s)
 	{
 		free(tmp);
 		return (0);
 	}
-	if (*line == 'O')
+	if (**s == 'O')
 		node->curr_p = 1;
-	else if (*line == 'X')
+	else if (**s == 'X')
 		node->curr_p = 2;
 	else
 		node->curr_p = 0;
@@ -189,25 +164,46 @@ int		get_curr_player(t_visual *v, t_dlist *node)
 	return (1);	
 }
 
+void	get_result(t_visual *v, char **s)
+{
+	char	*tmp;
+
+	tmp = *s;
+	while (**s && !ft_isdigit(**s))
+		(*s)++;
+	if (ft_strchr(tmp, 'O'))
+		v->res_p1 = ft_atoi(*s);
+	else if (ft_strchr(tmp, 'X'))
+		v->res_p2 = ft_atoi(*s);
+	free(tmp);
+}
+
 int		parser(t_visual *v, t_dlist *node)
 {
 	char *line;
-	int	success;
 
-	if (!v->flag)
+	if (get_next_line(0, &line) <= 0)
 	{
-		if (!get_players(v))
-			return (0);
-		if (!get_hw(v))
+		free(line);
+		return (-1);
+	}
+	if (ft_strstr(line, "Plateau"))
+	{
+		if (!v->flag)
+			get_hw(v, &line);
+		else
+			free(line);
+		get_map(v, node);
+	}
+	else if (ft_strstr(line, "Piece"))
+		get_pc(v, node, &line);
+	else if (ft_strstr(line, "got"))
+	{
+		if (!get_curr_player(v, node, &line))
 			return (0);
 	}
-	if (!(success = get_map(v, node)))
-		return (0);
-	if (success == -1)
-		return (-1);
-	get_pc(v, node);
-	if (!get_curr_player(v, node))
-		return (0);
+	else if (ft_strstr(line, "fin"))
+		get_result(v, &line);
 	v->flag = 1;
 	return (1);
 }
@@ -250,6 +246,8 @@ int		rec_game(t_visual *v)
 	t_dlist	*node;
 	int		success;
 
+	if (!get_players(v))
+		return (0);
 	while (1)
 	{	
 		node = ft_dlst_addnode(&(v->lst));
