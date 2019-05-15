@@ -23,12 +23,22 @@ void	print_map(char **map)
 
 void	print_list(t_dlist *begin)
 {
+	int		count = 0;
+	int		i = 0;
 	while (begin)
 	{
-		print_map(begin->map);
-		ft_printf("\n");
+		i++;
+		if (!begin->map)
+		{
+			count++;
+			printf("i = %d\n", i);
+			//print_map(begin->map);
+		}
+		//print_map(begin->map);
+		//ft_printf("\n");
 		begin = begin->next;
 	}
+	printf("count = %d\n", count);
 }
 
 int		ft_list_size(t_dlist *begin_list)

@@ -48,13 +48,14 @@ typedef struct			s_visual
 	int					res_p1;
 	int					res_p2;
 	int					flag;
+	int					status;
 }						t_visual;
 
 int		init_visual(t_visual *v);
 int		load_media(t_visual *v);
 int		load_audio(t_visual *v);
 void	ft_sdlclose(t_visual *v);
-int		parser(t_visual *v, t_dlist *node);
+int		parser(t_visual *v, t_dlist **node);
 int		rec_game(t_visual *v);
 void	print_map(char **map);
 void	print_list(t_dlist *begin);

@@ -95,7 +95,7 @@ void	get_hw(t_visual *v, char **s)
 	*s = NULL;
 }
 
-void	get_map(t_visual *v, t_dlist *node)
+void	get_map(t_visual *v, t_dlist **node)
 {
 	char	*line;
 	int		i;
@@ -104,18 +104,18 @@ void	get_map(t_visual *v, t_dlist *node)
 	free(line);
 	line = NULL;
 	i = -1;
-	node->map = (char**)ft_memalloc(sizeof(char*) * (v->map_h + 1));
-	node->map[v->map_h] = NULL;
+	(*node)->map = (char**)ft_memalloc(sizeof(char*) * (v->map_h + 1));
 	while (++i < v->map_h)
 	{
 		get_next_line(0, &line);
-		node->map[i] = ft_strdup(line + 4);
+		(*node)->map[i] = ft_strdup(line + 4);
 		free(line);
 		line = NULL;
 	}
+	(*node)->map[i] = NULL;
 }
 
-void	get_pc(t_visual *v, t_dlist *node, char **s)
+void	get_pc(t_visual *v, t_dlist **node, char **s)
 {
 	char	*line;
 	char	*tmp;
@@ -125,24 +125,24 @@ void	get_pc(t_visual *v, t_dlist *node, char **s)
 	tmp = *s;
 	while (**s && !ft_isdigit(**s))
 		(*s)++;
-	node->pc_h = ft_atoi(*s);
+	(*node)->pc_h = ft_atoi(*s);
 	while (**s && ft_isdigit(**s))
 		(*s)++;
-	node->pc_w = ft_atoi(*s + 1);
+	(*node)->pc_w = ft_atoi(*s + 1);
 	free(tmp);
 	*s = NULL;
-	node->pc = (char**)ft_memalloc(sizeof(char*) * (node->pc_h + 1));
-	node->pc[node->pc_h] = NULL;
-	while (++i < node->pc_h)
+	(*node)->pc = (char**)ft_memalloc(sizeof(char*) * ((*node)->pc_h + 1));
+	while (++i < (*node)->pc_h)
 	{
 		get_next_line(0, &line);
-		node->pc[i] = ft_strdup(line);
+		(*node)->pc[i] = ft_strdup(line);
 		free(line);
 		line = NULL;
 	}
+	(*node)->pc[i] = NULL;
 }
 
-int		get_curr_player(t_visual *v, t_dlist *node, char **s)
+int		get_curr_player(t_visual *v, t_dlist **node, char **s)
 {
 	char	*tmp;
 
@@ -155,11 +155,11 @@ int		get_curr_player(t_visual *v, t_dlist *node, char **s)
 		return (0);
 	}
 	if (**s == 'O')
-		node->curr_p = 1;
+		(*node)->curr_p = 1;
 	else if (**s == 'X')
-		node->curr_p = 2;
+		(*node)->curr_p = 2;
 	else
-		node->curr_p = 0;
+		(*node)->curr_p = 0;
 	free(tmp);
 	return (1);	
 }
@@ -178,7 +178,7 @@ void	get_result(t_visual *v, char **s)
 	free(tmp);
 }
 
-int		parser(t_visual *v, t_dlist *node)
+int		parser(t_visual *v, t_dlist **node)
 {
 	char *line;
 
@@ -199,6 +199,7 @@ int		parser(t_visual *v, t_dlist *node)
 		get_pc(v, node, &line);
 	else if (ft_strstr(line, "got"))
 	{
+		v->status = 1;
 		if (!get_curr_player(v, node, &line))
 			return (0);
 	}
@@ -248,13 +249,18 @@ int		rec_game(t_visual *v)
 
 	if (!get_players(v))
 		return (0);
-	while (1)
+	success = 1;
+	while (success != -1)
 	{	
 		node = ft_dlst_addnode(&(v->lst));
-		if (!(success = parser(v, node)))
-			return (0);
-		if (success == -1)
-			break;
+		while (!v->status)
+		{
+			if (!(success = parser(v, &node)))
+				return (0);
+			if (success == -1)
+				break;
+		}
+		v->status = 0;
 	}
 	return (1);	
 }

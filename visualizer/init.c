@@ -55,7 +55,8 @@ int		init_visual(t_visual *v)
 	v->res_p1 = 0;
 	v->res_p2 = 0;
 	v->flag = 0;
-	if (!init(v))
-		return (0);
+	v->status = 0;
+	//if (!init(v))
+	//	return (0);
 	return (1);
 }
