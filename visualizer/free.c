@@ -24,5 +24,6 @@ void	ft_sdlclose(t_visual *v)
 	SDL_DestroyWindow(v->window);
 	v->window = NULL;
 	IMG_Quit();
+	TTF_Quit();
 	SDL_Quit();
 }

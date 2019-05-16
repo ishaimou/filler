@@ -44,3 +44,42 @@ int		load_audio(t_visual *v)
 	success = SDL_QueueAudio(v->device_id, v->wav_buffer, wav_length);
 	return (1);
 }
+
+int		write_names(t_visual *v)
+{
+	TTF_Font	*font;
+	SDL_Surface	*surface1;
+	SDL_Surface *surface2;
+	SDL_Rect	dstrect[2];
+
+	dstrect[0].x = 5;
+	dstrect[0].y = 5,
+	dstrect[0].h = 32;
+	dstrect[0].w = 64;
+	dstrect[1].x = 200;
+	dstrect[1].y = 5;
+	dstrect[1].h = 32;
+	dstrect[1].w = 64;
+	if (!(font = TTF_OpenFont("fonts/arial.ttf", 25)))
+	{
+		ft_printf("Could not open \"%s\" TTF_ERROR: %s\n", "arial.ttf", TTF_GetError());
+		return (0);
+	}
+	surface1 = TTF_RenderText_Solid(font, v->p1_name, v->clr1);
+	surface2 = TTF_RenderText_Solid(font, v->p2_name, v->clr1);
+	v->p1_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface1);
+	v->p2_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface2);
+	SDL_RenderCopy(v->renderer, v->p1_name_tex, NULL, &dstrect[0]);
+	SDL_RenderCopy(v->renderer, v->p2_name_tex, NULL, &dstrect[1]);
+	SDL_FreeSurface(surface1);
+	SDL_FreeSurface(surface2);
+	TTF_CloseFont(font);
+	return (1);
+}
+
+
+
+
+
+
+

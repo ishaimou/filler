@@ -17,8 +17,9 @@
 #define SCREEN_WIDTH  640 
 #define SCREEN_HEIGHT 480
 
-//# include <SDL.h>
-//# include <SDL_image.h>
+# include <SDL.h>
+# include <SDL_image.h>
+# include <SDL_ttf.h>
 # include <stdio.h>
 # include "libft.h"
 
@@ -35,11 +36,15 @@ typedef struct			s_dlist
 
 typedef struct			s_visual
 {
-	//SDL_Window			*window;
-	//SDL_Renderer		*renderer;
-	//SDL_Texture			*bg_tex;
-	//SDL_AudioDeviceID	device_id;
-	//Uint8				*wav_buffer;
+	SDL_Window			*window;
+	SDL_Renderer		*renderer;
+	SDL_Texture			*bg_tex;
+	SDL_Texture			*p1_name_tex;
+	SDL_Texture			*p2_name_tex;
+	SDL_Color			clr1;
+	SDL_Color			clr2;
+	SDL_AudioDeviceID	device_id;
+	Uint8				*wav_buffer;
 	t_dlist				*lst;
 	int					map_h;
 	int					map_w;
@@ -55,6 +60,7 @@ typedef struct			s_visual
 int		init_visual(t_visual *v);
 int		load_media(t_visual *v);
 int		load_audio(t_visual *v);
+int		write_names(t_visual *v);
 void	ft_sdlclose(t_visual *v);
 int		parser(t_visual *v, t_dlist **node);
 int		rec_game(t_visual *v);
