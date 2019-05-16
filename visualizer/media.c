@@ -17,10 +17,10 @@ int		load_media(t_visual *v)
 	SDL_Surface	*bg_img;
 
 	bg_img = NULL;
-	bg_img = IMG_Load("images/bg1.jpg");
+	bg_img = IMG_Load("images/bg2.jpg");
 	if (!bg_img)
 	{
-		printf("Unable to load image \"%s\" SDL_ERROR: %s\n", "bg1.jpg", IMG_GetError());
+		printf("Unable to load image \"%s\" SDL_ERROR: %s\n", "bg2.jpg", IMG_GetError());
 		return (0);
 	}
 	v->bg_tex = SDL_CreateTextureFromSurface(v->renderer, bg_img);
@@ -52,23 +52,17 @@ int		write_names(t_visual *v)
 	SDL_Surface *surface2;
 	SDL_Rect	dstrect[2];
 
-	dstrect[0].x = 5;
+	dstrect[0].x = 65;
 	dstrect[0].y = 5,
-	dstrect[0].h = 32;
-	dstrect[0].w = 64;
-	dstrect[1].x = 200;
+	dstrect[1].x = 460;
 	dstrect[1].y = 5;
-	dstrect[1].h = 32;
-	dstrect[1].w = 64;
-	if (!(font = TTF_OpenFont("fonts/arial.ttf", 25)))
-	{
-		ft_printf("Could not open \"%s\" TTF_ERROR: %s\n", "arial.ttf", TTF_GetError());
-		return (0);
-	}
+	font = TTF_OpenFont("fonts/got.ttf", 25);
 	surface1 = TTF_RenderText_Solid(font, v->p1_name, v->clr1);
 	surface2 = TTF_RenderText_Solid(font, v->p2_name, v->clr1);
 	v->p1_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface1);
 	v->p2_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface2);
+	SDL_QueryTexture(v->p1_name_tex, NULL, NULL, &dstrect[0].w, &dstrect[0].h);
+	SDL_QueryTexture(v->p2_name_tex, NULL, NULL, &dstrect[1].w, &dstrect[1].h);
 	SDL_RenderCopy(v->renderer, v->p1_name_tex, NULL, &dstrect[0]);
 	SDL_RenderCopy(v->renderer, v->p2_name_tex, NULL, &dstrect[1]);
 	SDL_FreeSurface(surface1);

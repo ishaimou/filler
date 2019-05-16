@@ -53,10 +53,10 @@ int		init_visual(t_visual *v)
 	v->p1_name_tex = NULL;
 	v->p2_name_tex = NULL;
 	v->wav_buffer = NULL;
-	v->clr1.r = 255;
-	v->clr1.g = 255;
-	v->clr1.b = 255;
-	v->clr1.a = 255;
+	v->clr1.r = 195;
+	v->clr1.g = 176;
+	v->clr1.b = 145;
+	v->clr1.a = 10;
 	v->device_id = 0;
 	v->lst = NULL;
 	v->map_h = 0;
