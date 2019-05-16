@@ -12,6 +12,7 @@
 
 #include "visualizer.h"
 
+/*
 static int		init(t_visual *v)
 {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
@@ -39,14 +40,14 @@ static int		init(t_visual *v)
 	}
 	return (1);
 }
-
+*/
 int		init_visual(t_visual *v)
 {
-	v->window = NULL;
-	v->renderer = NULL;
-	v->bg_tex = NULL;
-	v->wav_buffer = NULL;
-	v->device_id = 0;
+	//v->window = NULL;
+	//v->renderer = NULL;
+	//v->bg_tex = NULL;
+	//v->wav_buffer = NULL;
+	//v->device_id = 0;
 	v->lst = NULL;
 	v->map_h = 0;
 	v->map_w = 0;
@@ -56,6 +57,7 @@ int		init_visual(t_visual *v)
 	v->res_p2 = 0;
 	v->flag = 0;
 	v->status = 0;
+	v->last = 0;
 	//if (!init(v))
 	//	return (0);
 	return (1);

@@ -46,6 +46,6 @@ int		main(int argc, char *argv[])
 		SDL_RenderCopy(v.renderer, v.bg_tex, NULL, NULL);
 		SDL_RenderPresent(v.renderer);
 	}
-	ft_sdlclose(&v);
+	//ft_sdlclose(&v);
 	return (0);
 }

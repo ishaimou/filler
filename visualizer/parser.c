@@ -204,7 +204,10 @@ int		parser(t_visual *v, t_dlist **node)
 			return (0);
 	}
 	else if (ft_strstr(line, "fin"))
+	{
 		get_result(v, &line);
+		v->last = 1;
+	}
 	v->flag = 1;
 	return (1);
 }
@@ -242,6 +245,19 @@ t_dlist	*ft_dlst_addnode(t_dlist **head)
 	return (tmp->next);
 }
 
+void	fill_gaps(t_visual *v, t_dlist **node)
+{
+	int		i;
+
+	i = -1;
+	if (!(*node)->prev)
+		return ;
+	(*node)->map = (char**)malloc(sizeof(char*) * (v->map_h + 1));
+	while (++i < v->map_h)
+		(*node)->map[i] = ft_strdup((*node)->prev->map[i]);
+	(*node)->map[i] = NULL;
+}
+
 int		rec_game(t_visual *v)
 {
 	t_dlist	*node;
@@ -260,7 +276,11 @@ int		rec_game(t_visual *v)
 			if (success == -1)
 				break;
 		}
+		if (!node->map)
+			fill_gaps(v, &node);
 		v->status = 0;
 	}
+	if (v->last)
+		free_node(&node);
 	return (1);	
 }

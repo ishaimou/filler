@@ -23,22 +23,19 @@ void	print_map(char **map)
 
 void	print_list(t_dlist *begin)
 {
-	int		count = 0;
-	int		i = 0;
+	int		i=0;
 	while (begin)
 	{
-		i++;
 		if (!begin->map)
-		{
-			count++;
-			printf("i = %d\n", i);
-			//print_map(begin->map);
-		}
+			i++;
 		//print_map(begin->map);
 		//ft_printf("\n");
+		//print_map(begin->pc);
+		//ft_printf("\n");
+		
 		begin = begin->next;
 	}
-	printf("count = %d\n", count);
+	printf("i=%d\n", i);
 }
 
 int		ft_list_size(t_dlist *begin_list)
@@ -52,4 +49,54 @@ int		ft_list_size(t_dlist *begin_list)
 		i++;
 	}
 	return (i);
+}
+
+void	free_node(t_dlist **node)
+{
+	if (*node && (*node)->prev)
+	{
+		free(*node);
+		(*node)->prev->next = NULL;
+	}
+}
+
+void	free_dbl(char ***tab)
+{
+	int		i;
+
+	i = 0;
+	while ((*tab)[i])
+	{
+		free((*tab)[i]);
+		i++;
+	}
+	free(*tab);
+	*tab = NULL;
+}
+
+void	free_list(t_dlist **begin)
+{
+	t_dlist	*tmp;
+	t_dlist	*current;
+	
+	current = *begin;
+	while (current)
+	{
+		tmp = current;
+		if (current->map)
+			free_dbl(&(current->map));
+		if (current->pc)
+			free_dbl(&(current->pc));
+		current = current->next;
+		free(tmp);
+	}
+	*begin = NULL;
+}
+
+void	free_visual(t_visual *v)
+{
+	if (v->p1_name)
+		free(v->p1_name);
+	if (v->p2_name)
+		free(v->p2_name);
 }
