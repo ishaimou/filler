@@ -45,19 +45,26 @@ static int		init(t_visual *v)
 	return (1);
 }
 
+SDL_Color	init_color(int r, int g, int b, int a)
+{
+	SDL_Color	clr;
+
+	clr.r = r;
+	clr.g = g;
+	clr.b = b;
+	clr.a = a;
+	return (clr);
+}
+
 int		init_visual(t_visual *v)
 {
 	v->window = NULL;
 	v->renderer = NULL;
-	v->bg_tex = NULL;
-	v->p1_name_tex = NULL;
-	v->p2_name_tex = NULL;
 	v->wav_buffer = NULL;
-	v->clr1.r = 195;
-	v->clr1.g = 176;
-	v->clr1.b = 145;
-	v->clr1.a = 10;
 	v->device_id = 0;
+	v->clr_p1 = init_color(93, 138, 168, 255);
+	v->clr_p2 = init_color(196, 98, 16, 255);
+	v->clr_vs = init_color(255, 255, 255, 255);
 	v->lst = NULL;
 	v->map_h = 0;
 	v->map_w = 0;

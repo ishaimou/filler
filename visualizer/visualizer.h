@@ -16,6 +16,9 @@
 //Screen dimension macros
 #define SCREEN_WIDTH  640 
 #define SCREEN_HEIGHT 480
+#define PL_FONT "/media/got.ttf"
+#define BG_AUDIO "/media/Fantasia.wav"
+#define BG_WALL "/media/bg2.jpg"
 
 # include <SDL.h>
 # include <SDL_image.h>
@@ -38,12 +41,10 @@ typedef struct			s_visual
 {
 	SDL_Window			*window;
 	SDL_Renderer		*renderer;
-	SDL_Texture			*bg_tex;
-	SDL_Texture			*p1_name_tex;
-	SDL_Texture			*p2_name_tex;
-	SDL_Color			clr1;
-	SDL_Color			clr2;
 	SDL_AudioDeviceID	device_id;
+	SDL_Color			clr_p1;
+	SDL_Color			clr_p2;
+	SDL_Color			clr_vs;
 	Uint8				*wav_buffer;
 	t_dlist				*lst;
 	int					map_h;
@@ -60,7 +61,8 @@ typedef struct			s_visual
 int		init_visual(t_visual *v);
 int		load_media(t_visual *v);
 int		load_audio(t_visual *v);
-int		write_names(t_visual *v);
+int		write_p1(t_visual *v);
+int		write_p2(t_visual *v);
 void	ft_sdlclose(t_visual *v);
 int		parser(t_visual *v, t_dlist **node);
 int		rec_game(t_visual *v);

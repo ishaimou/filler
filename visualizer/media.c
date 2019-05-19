@@ -15,16 +15,19 @@
 int		load_media(t_visual *v)
 {
 	SDL_Surface	*bg_img;
+	SDL_Texture	*bg_tex;
 
 	bg_img = NULL;
-	bg_img = IMG_Load("images/bg2.jpg");
+	bg_img = IMG_Load(BG_WALL);
 	if (!bg_img)
 	{
-		printf("Unable to load image \"%s\" SDL_ERROR: %s\n", "bg2.jpg", IMG_GetError());
+		printf("Unable to load image \"%s\" SDL_ERROR: %s\n", BG_WALL, IMG_GetError());
 		return (0);
 	}
-	v->bg_tex = SDL_CreateTextureFromSurface(v->renderer, bg_img);
+	bg_tex = SDL_CreateTextureFromSurface(v->renderer, bg_img);
+	SDL_RenderCopy(v->renderer, bg_tex, NULL, NULL);
 	SDL_FreeSurface(bg_img);
+	SDL_DestroyTexture(bg_tex);
 	bg_img = NULL;
 	return (1);
 }
@@ -35,9 +38,9 @@ int		load_audio(t_visual *v)
 	Uint32				wav_length;
 	int					success;
 		
-	if (!SDL_LoadWAV("audio/Fantasia.wav", &wav_spec, &(v->wav_buffer), &wav_length))
+	if (!SDL_LoadWAV(BG_AUDIO, &wav_spec, &(v->wav_buffer), &wav_length))
 	{
-		printf("Could not open \"%s\" SDL_ERROR: %s\n", "Fantasia.wav", SDL_GetError()); 
+		printf("Could not open \"%s\" SDL_ERROR: %s\n", BG_AUDIO, SDL_GetError()); 
 		return (0);
 	}
 	v->device_id = SDL_OpenAudioDevice(NULL, 0, &wav_spec, NULL, 0);
@@ -45,31 +48,57 @@ int		load_audio(t_visual *v)
 	return (1);
 }
 
-int		write_names(t_visual *v)
+int		write_p1(t_visual *v)
 {
 	TTF_Font	*font;
 	SDL_Surface	*surface1;
-	SDL_Surface *surface2;
-	SDL_Rect	dstrect[2];
+	SDL_Texture	*p1_name_tex;
+	SDL_Rect	dstrect;
 
-	dstrect[0].x = 65;
-	dstrect[0].y = 5,
-	dstrect[1].x = 460;
-	dstrect[1].y = 5;
-	font = TTF_OpenFont("fonts/got.ttf", 25);
-	surface1 = TTF_RenderText_Solid(font, v->p1_name, v->clr1);
-	surface2 = TTF_RenderText_Solid(font, v->p2_name, v->clr1);
-	v->p1_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface1);
-	v->p2_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface2);
-	SDL_QueryTexture(v->p1_name_tex, NULL, NULL, &dstrect[0].w, &dstrect[0].h);
-	SDL_QueryTexture(v->p2_name_tex, NULL, NULL, &dstrect[1].w, &dstrect[1].h);
-	SDL_RenderCopy(v->renderer, v->p1_name_tex, NULL, &dstrect[0]);
-	SDL_RenderCopy(v->renderer, v->p2_name_tex, NULL, &dstrect[1]);
+	dstrect.x = SCREEN_WIDTH / 6;
+	dstrect.y = SCREEN_HEIGHT / 10;
+	font = TTF_OpenFont(PL_FONT, 25);
+	if (!font)
+	{
+		ft_printf("Could not open \"%s\" TTF_Error: %s\n", PL_FONT, TTF_GetError());
+		return (0);
+	}
+	surface1 = TTF_RenderText_Solid(font, v->p1_name, v->clr_p1);
+	p1_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface1);
+	SDL_QueryTexture(p1_name_tex, NULL, NULL, &dstrect.w, &dstrect.h);
+	SDL_RenderCopy(v->renderer, p1_name_tex, NULL, &dstrect);
 	SDL_FreeSurface(surface1);
-	SDL_FreeSurface(surface2);
+	SDL_DestroyTexture(p1_name_tex);
 	TTF_CloseFont(font);
 	return (1);
 }
+
+int		write_p2(t_visual *v)
+{
+	TTF_Font	*font;
+	SDL_Surface	*surface2;
+	SDL_Texture	*p2_name_tex;
+	SDL_Rect	dstrect;
+
+
+	dstrect.x = 4 * SCREEN_WIDTH / 6;
+	dstrect.y = SCREEN_HEIGHT / 10;
+	font = TTF_OpenFont(PL_FONT, 25);
+	if (!font)
+	{
+		ft_printf("Could not open \"%s\" TTF_Error: %s\n", PL_FONT, TTF_GetError());
+		return (0);
+	}
+	surface2 = TTF_RenderText_Solid(font, v->p2_name, v->clr_p2);
+	p2_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface2);
+	SDL_QueryTexture(p2_name_tex, NULL, NULL, &dstrect.w, &dstrect.h);
+	SDL_RenderCopy(v->renderer, p2_name_tex, NULL, &dstrect);
+	SDL_FreeSurface(surface2);
+	SDL_DestroyTexture(p2_name_tex);
+	TTF_CloseFont(font);
+	return (1);
+}
+
 
 
 

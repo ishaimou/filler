@@ -26,12 +26,12 @@ void	print_list(t_dlist *begin)
 	int		i=0;
 	while (begin)
 	{
-		if (!begin->map)
+		if (!begin->map || !begin->pc)
 			i++;
-		//print_map(begin->map);
-		//ft_printf("\n");
-		//print_map(begin->pc);
-		//ft_printf("\n");
+		print_map(begin->map);
+		ft_printf("\n");
+		print_map(begin->pc);
+		ft_printf("\n");
 		
 		begin = begin->next;
 	}

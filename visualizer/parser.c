@@ -142,26 +142,15 @@ void	get_pc(t_visual *v, t_dlist **node, char **s)
 	(*node)->pc[i] = NULL;
 }
 
-int		get_curr_player(t_visual *v, t_dlist **node, char **s)
+void		get_curr_player(t_visual *v, t_dlist **node, char **s)
 {
-	char	*tmp;
-
-	tmp = *s;
-	while (**s && **s != 'O' && **s != 'X')
-		(*s)++;
-	if (!**s)
-	{
-		free(tmp);
-		return (0);
-	}
-	if (**s == 'O')
+	if (ft_strstr(*s, "O"))
 		(*node)->curr_p = 1;
-	else if (**s == 'X')
+	else if (ft_strstr(*s, "X"))
 		(*node)->curr_p = 2;
 	else
 		(*node)->curr_p = 0;
-	free(tmp);
-	return (1);	
+	free(*s);
 }
 
 void	get_result(t_visual *v, char **s)
@@ -178,6 +167,30 @@ void	get_result(t_visual *v, char **s)
 	free(tmp);
 }
 
+void	parse_line(t_visual *v, t_dlist **node, char  **line)
+{
+	if (ft_strstr(*line, "Plateau"))
+	{
+		if (!v->flag)
+			get_hw(v, line);
+		else
+			free(*line);
+		get_map(v, node);
+	}
+	else if (ft_strstr(*line, "Piece"))
+		get_pc(v, node, line);
+	else if (ft_strstr(*line, "got"))
+	{
+		v->status = 1;
+		get_curr_player(v, node, line);
+	}
+	else if (ft_strstr(*line, "fin"))
+	{
+		get_result(v, line);
+		v->last = 1;
+	}
+}
+
 int		parser(t_visual *v, t_dlist **node)
 {
 	char *line;
@@ -185,29 +198,9 @@ int		parser(t_visual *v, t_dlist **node)
 	if (get_next_line(0, &line) <= 0)
 	{
 		free(line);
-		return (-1);
+		return (0);
 	}
-	if (ft_strstr(line, "Plateau"))
-	{
-		if (!v->flag)
-			get_hw(v, &line);
-		else
-			free(line);
-		get_map(v, node);
-	}
-	else if (ft_strstr(line, "Piece"))
-		get_pc(v, node, &line);
-	else if (ft_strstr(line, "got"))
-	{
-		v->status = 1;
-		if (!get_curr_player(v, node, &line))
-			return (0);
-	}
-	else if (ft_strstr(line, "fin"))
-	{
-		get_result(v, &line);
-		v->last = 1;
-	}
+	parse_line(v, node, &line);
 	v->flag = 1;
 	return (1);
 }
@@ -266,16 +259,12 @@ int		rec_game(t_visual *v)
 	if (!get_players(v))
 		return (0);
 	success = 1;
-	while (success != -1)
+	while (success)
 	{	
 		node = ft_dlst_addnode(&(v->lst));
 		while (!v->status)
-		{
 			if (!(success = parser(v, &node)))
-				return (0);
-			if (success == -1)
 				break;
-		}
 		if (!node->map)
 			fill_gaps(v, &node);
 		v->status = 0;
