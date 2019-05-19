@@ -55,8 +55,6 @@ int		write_p1(t_visual *v)
 	SDL_Texture	*p1_name_tex;
 	SDL_Rect	dstrect;
 
-	dstrect.x = SCREEN_WIDTH / 6;
-	dstrect.y = SCREEN_HEIGHT / 10;
 	font = TTF_OpenFont(PL_FONT, 25);
 	if (!font)
 	{
@@ -66,6 +64,8 @@ int		write_p1(t_visual *v)
 	surface1 = TTF_RenderText_Solid(font, v->p1_name, v->clr_p1);
 	p1_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface1);
 	SDL_QueryTexture(p1_name_tex, NULL, NULL, &dstrect.w, &dstrect.h);
+	dstrect.x = (SCREEN_WIDTH - dstrect.w) / 6;
+	dstrect.y = (SCREEN_HEIGHT - dstrect.h) / 10;
 	SDL_RenderCopy(v->renderer, p1_name_tex, NULL, &dstrect);
 	SDL_FreeSurface(surface1);
 	SDL_DestroyTexture(p1_name_tex);
@@ -81,8 +81,6 @@ int		write_p2(t_visual *v)
 	SDL_Rect	dstrect;
 
 
-	dstrect.x = 4 * SCREEN_WIDTH / 6;
-	dstrect.y = SCREEN_HEIGHT / 10;
 	font = TTF_OpenFont(PL_FONT, 25);
 	if (!font)
 	{
@@ -92,6 +90,8 @@ int		write_p2(t_visual *v)
 	surface2 = TTF_RenderText_Solid(font, v->p2_name, v->clr_p2);
 	p2_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface2);
 	SDL_QueryTexture(p2_name_tex, NULL, NULL, &dstrect.w, &dstrect.h);
+	dstrect.x = 5 * (SCREEN_WIDTH - dstrect.w) / 6;
+	dstrect.y = (SCREEN_HEIGHT - dstrect.h) / 10;
 	SDL_RenderCopy(v->renderer, p2_name_tex, NULL, &dstrect);
 	SDL_FreeSurface(surface2);
 	SDL_DestroyTexture(p2_name_tex);
