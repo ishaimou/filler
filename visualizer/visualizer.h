@@ -63,6 +63,7 @@ int		load_media(t_visual *v);
 int		load_audio(t_visual *v);
 int		write_p1(t_visual *v);
 int		write_p2(t_visual *v);
+void	draw_blank(t_visual *v);
 void	ft_sdlclose(t_visual *v);
 int		parser(t_visual *v, t_dlist **node);
 int		rec_game(t_visual *v);

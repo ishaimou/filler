@@ -14,8 +14,9 @@
 
 int		main(int argc, char *argv[])
 {
-	SDL_Event	event;
+	SDL_Event	e;
 	t_visual	v;
+	int			close;
 
 	if (!init_visual(&v))
 		return (0);
@@ -39,20 +40,23 @@ int		main(int argc, char *argv[])
 	printf("res_p1 = %d; res_p2 = %d\n", v.res_p1, v.res_p2);
 	*/
 	SDL_PauseAudioDevice(v.device_id, 0);
+	//SDL_RenderClear(v.renderer);
 	write_p1(&v);
 	write_p2(&v);
+	draw_blank(&v);
 	SDL_RenderPresent(v.renderer);
-	while (1)
+	
+	close = 0;
+	while (!close)
 	{
-		SDL_WaitEvent(&event);
-		if (event.type == SDL_QUIT)
-			break;
-		if (event.type == SDL_KEYDOWN)
+		while (SDL_PollEvent(&e))
 		{
-			if (event.key.keysym.sym == SDLK_ESCAPE)
-				break;
+			if (e.type == SDL_QUIT)
+				close = 1;
+			if (e.type == SDL_KEYDOWN)
+				if (e.key.keysym.sym == SDLK_ESCAPE)
+					close = 1;
 		}
-		//SDL_RenderClear(v.renderer);
 	}
 	ft_sdlclose(&v);
 	return (0);
