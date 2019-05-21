@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:32:51 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/15 03:31:02 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/21 07:04:40 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		main(int argc, char *argv[])
 	SDL_Event	e;
 	t_visual	v;
 	int			close;
+	t_dlist		*begin;
 
 	if (!init_visual(&v))
 		return (0);
@@ -45,7 +46,8 @@ int		main(int argc, char *argv[])
 	write_p2(&v);
 	draw_blank(&v);
 	SDL_RenderPresent(v.renderer);
-	
+
+	begin = v->lst;	
 	close = 0;
 	while (!close)
 	{
@@ -54,8 +56,14 @@ int		main(int argc, char *argv[])
 			if (e.type == SDL_QUIT)
 				close = 1;
 			if (e.type == SDL_KEYDOWN)
+			{
 				if (e.key.keysym.sym == SDLK_ESCAPE)
 					close = 1;
+				if (e.key.keysym.sym == SDLK_RIGHT)
+					draw_next(&v, &begin);
+				if (e.key.keysym.sym == SDLK_LEFT)
+					draw_prev(&v, &begin);
+			}	
 		}
 	}
 	ft_sdlclose(&v);

@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:34:24 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/15 03:16:47 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/21 05:57:08 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int		init(t_visual *v)
 	return (1);
 }
 
-SDL_Color	init_color(int r, int g, int b, int a)
+SDL_Color	init_rgbclr(int r, int g, int b, int a)
 {
 	SDL_Color	clr;
 
@@ -62,12 +62,15 @@ int		init_visual(t_visual *v)
 	v->renderer = NULL;
 	v->wav_buffer = NULL;
 	v->device_id = 0;
-	v->clr_p1 = init_color(93, 138, 168, 255);
-	v->clr_p2 = init_color(196, 98, 16, 255);
-	v->clr_vs = init_color(255, 255, 255, 255);
+	v->clr_p1 = init_rgbclr(93, 138, 168, 255);
+	v->clr_p2 = init_rgbclr(196, 98, 16, 255);
+	v->clr_vs = init_rgbclr(255, 255, 255, 255);
 	v->lst = NULL;
 	v->map_h = 0;
 	v->map_w = 0;
+	v->rect_w = 0;
+	v->start_x = 0;
+	v->start_y = 0;
 	v->p1_name = NULL;
 	v->p2_name = NULL;
 	v->res_p1 = 0;

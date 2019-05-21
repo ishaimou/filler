@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:32:50 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/13 02:33:25 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/21 05:53:12 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		write_p1(t_visual *v)
 	SDL_Texture	*p1_name_tex;
 	SDL_Rect	dstrect;
 
-	font = TTF_OpenFont(PL_FONT, 25);
+	font = TTF_OpenFont(PL_FONT, 38);
 	if (!font)
 	{
 		ft_printf("Could not open \"%s\" TTF_Error: %s\n", PL_FONT, TTF_GetError());
@@ -65,7 +65,7 @@ int		write_p1(t_visual *v)
 	p1_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface1);
 	SDL_QueryTexture(p1_name_tex, NULL, NULL, &dstrect.w, &dstrect.h);
 	dstrect.x = (SCREEN_WIDTH - dstrect.w) / 6;
-	dstrect.y = (SCREEN_HEIGHT - dstrect.h) / 10;
+	dstrect.y = (SCREEN_HEIGHT - dstrect.h) / 20;
 	SDL_RenderCopy(v->renderer, p1_name_tex, NULL, &dstrect);
 	SDL_FreeSurface(surface1);
 	SDL_DestroyTexture(p1_name_tex);
@@ -81,7 +81,7 @@ int		write_p2(t_visual *v)
 	SDL_Rect	dstrect;
 
 
-	font = TTF_OpenFont(PL_FONT, 25);
+	font = TTF_OpenFont(PL_FONT, 38);
 	if (!font)
 	{
 		ft_printf("Could not open \"%s\" TTF_Error: %s\n", PL_FONT, TTF_GetError());
@@ -91,18 +91,11 @@ int		write_p2(t_visual *v)
 	p2_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface2);
 	SDL_QueryTexture(p2_name_tex, NULL, NULL, &dstrect.w, &dstrect.h);
 	dstrect.x = 5 * (SCREEN_WIDTH - dstrect.w) / 6;
-	dstrect.y = (SCREEN_HEIGHT - dstrect.h) / 10;
+	dstrect.y = (SCREEN_HEIGHT - dstrect.h) / 20;
 	SDL_RenderCopy(v->renderer, p2_name_tex, NULL, &dstrect);
 	SDL_FreeSurface(surface2);
 	SDL_DestroyTexture(p2_name_tex);
 	TTF_CloseFont(font);
 	return (1);
 }
-
-
-
-
-
-
-
 

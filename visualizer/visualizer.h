@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 01:51:21 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/15 03:08:33 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/21 07:04:40 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define VISUALIZER_H
 
 //Screen dimension macros
-#define SCREEN_WIDTH  640 
-#define SCREEN_HEIGHT 480
+#define SCREEN_WIDTH  1680 
+#define SCREEN_HEIGHT 1280
 #define PL_FONT "/media/got.ttf"
 #define BG_AUDIO "/media/Fantasia.wav"
 #define BG_WALL "/media/bg2.jpg"
@@ -49,6 +49,9 @@ typedef struct			s_visual
 	t_dlist				*lst;
 	int					map_h;
 	int					map_w;
+	int					rect_w;
+	int					start_x;
+	int					start_y;
 	char				*p1_name;
 	char				*p2_name;
 	int					res_p1;
@@ -58,6 +61,7 @@ typedef struct			s_visual
 	int					last;
 }						t_visual;
 
+void	set_rectw(t_visual *v);
 int		init_visual(t_visual *v);
 int		load_media(t_visual *v);
 int		load_audio(t_visual *v);
