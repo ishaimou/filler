@@ -6,31 +6,31 @@ void	draw_rect(t_visual *v, t_dlist *begin, int i, int j)
 
 	rect.h = v->rect_w;
 	rect.w = v->rect_w;
-	rect.y = v->start_y + i * (rect.h + 2);
-	rect.x = v->start_x + j * (rect.w + 2);
+	rect.y = v->start_y + i * (rect.h + 1);
+	rect.x = v->start_x + j * (rect.w + 1);
 	if (begin->map[i][j] == 'X')
 	{
-		SDL_SetRenderDrawColor(v->renderer, 255, 255, 0, 255);
+		SDL_SetRenderDrawColor(v->renderer, 196, 98, 16, 255);
 		SDL_RenderFillRect(v->renderer, &rect);
 	}
 	else if (begin->map[i][j] == 'x')
 	{
-		SDL_SetRenderDrawColor(v->renderer, 255, 255, 100, 255);
+		SDL_SetRenderDrawColor(v->renderer, 255, 126, 0, 255);
 		SDL_RenderFillRect(v->renderer, &rect);
 	}
 	else if (begin->map[i][j] == 'O')
 	{
-		SDL_SetRenderDrawColor(v->renderer, 255, 0, 255, 255);
+		SDL_SetRenderDrawColor(v->renderer, 93, 138, 168, 255);
 		SDL_RenderFillRect(v->renderer, &rect);
 	}
 	else if (begin->map[i][j] == 'o')
 	{
-		SDL_SetRenderDrawColor(v->renderer, 255, 100, 255, 255);
+		SDL_SetRenderDrawColor(v->renderer, 124, 185, 232, 255);
 		SDL_RenderFillRect(v->renderer, &rect);
 	}
 	else if (begin->map[i][j] == '.')
 	{
-		SDL_SetRenderDrawColor(v->renderer, 255, 255, 255, 255);
+		SDL_SetRenderDrawColor(v->renderer, 180, 186, 196, 255);
 		SDL_RenderFillRect(v->renderer, &rect);
 	}
 }

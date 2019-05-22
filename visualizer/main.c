@@ -44,6 +44,7 @@ int		main(int argc, char *argv[])
 	//SDL_RenderClear(v.renderer);
 	write_p1(&v);
 	write_p2(&v);
+	write_vs(&v);
 	begin = v.lst;
 	set_rectw(&v);
 	draw_curr(&v, begin);

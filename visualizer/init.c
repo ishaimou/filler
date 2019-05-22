@@ -64,11 +64,12 @@ int		init_visual(t_visual *v)
 	v->device_id = 0;
 	v->clr_p1 = init_rgbclr(93, 138, 168, 255);
 	v->clr_p2 = init_rgbclr(196, 98, 16, 255);
-	v->clr_vs = init_rgbclr(255, 255, 255, 255);
+	v->clr_vs = init_rgbclr(239, 222, 205, 255);
 	v->lst = NULL;
 	v->map_h = 0;
 	v->map_w = 0;
 	v->rect_w = 0;
+	v->pause = 0;
 	v->start_x = 0;
 	v->start_y = 0;
 	v->p1_name = NULL;

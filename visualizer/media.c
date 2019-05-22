@@ -99,3 +99,32 @@ int		write_p2(t_visual *v)
 	return (1);
 }
 
+int		write_vs(t_visual *v)
+{
+	TTF_Font	*font;
+	SDL_Surface	*surface;
+	SDL_Texture	*vs_tex;
+	SDL_Rect	dstrect;
+
+	font = TTF_OpenFont(VS_FONT, 48);
+	if (!font)
+	{
+		ft_printf("Could not open \"%s\" TTF_Error: %s\n", VS_FONT, TTF_GetError());
+		return (0);
+	}
+	surface = TTF_RenderText_Solid(font, "VS", v->clr_vs);
+	vs_tex = SDL_CreateTextureFromSurface(v->renderer, surface);
+	SDL_QueryTexture(vs_tex, NULL, NULL, &dstrect.w, &dstrect.h);
+	dstrect.x = (SCREEN_WIDTH - dstrect.w) / 2;
+	dstrect.y = (SCREEN_HEIGHT - dstrect.h) / 20;
+	SDL_RenderCopy(v->renderer, vs_tex, NULL, &dstrect);
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(vs_tex);
+	TTF_CloseFont(font);
+	return (1);
+}
+
+
+
+
+

@@ -17,6 +17,7 @@
 #define SCREEN_WIDTH  1024 
 #define SCREEN_HEIGHT 768
 #define PL_FONT "/media/got.ttf"
+#define	VS_FONT "/media/chinese.ttf"
 #define BG_AUDIO "/media/Fantasia.wav"
 #define BG_WALL "/media/bg2.jpg"
 
@@ -50,6 +51,7 @@ typedef struct			s_visual
 	int					map_h;
 	int					map_w;
 	int					rect_w;
+	int					pause;
 	int					start_x;
 	int					start_y;
 	char				*p1_name;
@@ -71,6 +73,7 @@ int		load_media(t_visual *v);
 int		load_audio(t_visual *v);
 int		write_p1(t_visual *v);
 int		write_p2(t_visual *v);
+int		write_vs(t_visual *v);
 void	draw_blank(t_visual *v);
 void	ft_sdlclose(t_visual *v);
 int		parser(t_visual *v, t_dlist **node);
