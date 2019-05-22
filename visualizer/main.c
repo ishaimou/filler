@@ -44,10 +44,9 @@ int		main(int argc, char *argv[])
 	//SDL_RenderClear(v.renderer);
 	write_p1(&v);
 	write_p2(&v);
-	draw_blank(&v);
-	SDL_RenderPresent(v.renderer);
-
-	begin = v->lst;	
+	begin = v.lst;
+	set_rectw(&v);
+	draw_curr(&v, begin);
 	close = 0;
 	while (!close)
 	{
@@ -63,7 +62,9 @@ int		main(int argc, char *argv[])
 					draw_next(&v, &begin);
 				if (e.key.keysym.sym == SDLK_LEFT)
 					draw_prev(&v, &begin);
-			}	
+				if (e.key.keysym.sym == SDLK_SPACE)
+					draw_loop(&v, &begin);
+			}
 		}
 	}
 	ft_sdlclose(&v);

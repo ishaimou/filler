@@ -14,8 +14,8 @@
 # define VISUALIZER_H
 
 //Screen dimension macros
-#define SCREEN_WIDTH  1680 
-#define SCREEN_HEIGHT 1280
+#define SCREEN_WIDTH  1024 
+#define SCREEN_HEIGHT 768
 #define PL_FONT "/media/got.ttf"
 #define BG_AUDIO "/media/Fantasia.wav"
 #define BG_WALL "/media/bg2.jpg"
@@ -61,6 +61,10 @@ typedef struct			s_visual
 	int					last;
 }						t_visual;
 
+void	draw_curr(t_visual *v, t_dlist *begin);
+void	draw_next(t_visual *v, t_dlist **begin);
+void	draw_prev(t_visual *v, t_dlist **begin);
+void	draw_loop(t_visual *v, t_dlist **begin);
 void	set_rectw(t_visual *v);
 int		init_visual(t_visual *v);
 int		load_media(t_visual *v);

@@ -16,7 +16,7 @@ void	set_rectw(t_visual *v)
 {
 	if (v->map_h <= 15)
 	{
-		v->rect_w = 45;
+		v->rect_w = 20;
 		v->start_x = (SCREEN_WIDTH - v->map_w) / 4;
 		v->start_y = (SCREEN_HEIGHT - v->map_h) / 4;
 	}
