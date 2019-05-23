@@ -67,6 +67,8 @@ int		main(int argc, char *argv[])
 					v.pause = (v.pause) ? 0 : 1;
 				if (v.e.key.keysym.sym == SDLK_r)
 					reset_game(&v, &begin);
+				if (v.e.key.keysym.sym == SDLK_c)
+					change_color(&v, begin);
 			}
 		}
 		if (begin->next && !v.pause)

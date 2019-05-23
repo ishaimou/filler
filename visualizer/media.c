@@ -61,7 +61,7 @@ int		write_p1(t_visual *v)
 		ft_printf("Could not open \"%s\" TTF_Error: %s\n", PL_FONT, TTF_GetError());
 		return (0);
 	}
-	surface1 = TTF_RenderText_Solid(font, v->p1_name, v->clr_p1);
+	surface1 = TTF_RenderText_Solid(font, v->p1_name, v->clrs[v->c].clr1);
 	p1_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface1);
 	SDL_QueryTexture(p1_name_tex, NULL, NULL, &dstrect.w, &dstrect.h);
 	dstrect.x = (SCREEN_WIDTH - dstrect.w) / 6;
@@ -87,7 +87,7 @@ int		write_p2(t_visual *v)
 		ft_printf("Could not open \"%s\" TTF_Error: %s\n", PL_FONT, TTF_GetError());
 		return (0);
 	}
-	surface2 = TTF_RenderText_Solid(font, v->p2_name, v->clr_p2);
+	surface2 = TTF_RenderText_Solid(font, v->p2_name, v->clrs[v->c].clr2);
 	p2_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface2);
 	SDL_QueryTexture(p2_name_tex, NULL, NULL, &dstrect.w, &dstrect.h);
 	dstrect.x = 5 * (SCREEN_WIDTH - dstrect.w) / 6;

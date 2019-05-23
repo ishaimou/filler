@@ -56,21 +56,38 @@ SDL_Color	init_rgbclr(int r, int g, int b, int a)
 	return (clr);
 }
 
+void	init_color(t_visual *v)
+{
+	v->clrs[0].clr1 = init_rgbclr(93, 138, 168, 255);
+	v->clrs[0].clr11 = init_rgbclr(124, 185, 232, 255);
+	v->clrs[0].clr2 = init_rgbclr(196, 98, 16, 255);
+	v->clrs[0].clr22 = init_rgbclr(255, 126, 0, 255);
+	v->clrs[1].clr1 = init_rgbclr(92, 220, 162, 255);
+	v->clrs[1].clr11 = init_rgbclr(92, 220, 162, 255);
+	v->clrs[1].clr2 = init_rgbclr(92, 220, 162, 255);
+	v->clrs[1].clr22 = init_rgbclr(92, 220, 162, 255);
+	v->clrs[2].clr1 = init_rgbclr(92, 220, 162, 255);
+	v->clrs[2].clr11 = init_rgbclr(92, 220, 162, 255);
+	v->clrs[2].clr2 = init_rgbclr(92, 220, 162, 255);
+	v->clrs[2].clr22 = init_rgbclr(92, 220, 162, 255);
+}
+
 int		init_visual(t_visual *v)
 {
 	v->window = NULL;
 	v->renderer = NULL;
 	v->wav_buffer = NULL;
 	v->device_id = 0;
-	v->clr_p1 = init_rgbclr(93, 138, 168, 255);
-	v->clr_p2 = init_rgbclr(196, 98, 16, 255);
+	//v->clr_p1 = init_rgbclr(93, 138, 168, 255);
+	//v->clr_p2 = init_rgbclr(196, 98, 16, 255);
 	v->clr_vs = init_rgbclr(239, 222, 205, 255);
+	init_color(v);
 	v->lst = NULL;
 	v->map_h = 0;
 	v->map_w = 0;
 	v->rect_w = 0;
+	v->c = 0;
 	v->pause = 1;
-	v->space = 0;
 	v->start_x = 0;
 	v->start_y = 0;
 	v->p1_name = NULL;

@@ -20,6 +20,7 @@
 #define	VS_FONT "/media/chinese.ttf"
 #define BG_AUDIO "/media/Fantasia.wav"
 #define BG_WALL "/media/bg2.jpg"
+#define	NB_COLOR 3
 
 # include <SDL.h>
 # include <SDL_image.h>
@@ -38,22 +39,31 @@ typedef struct			s_dlist
 	struct s_dlist		*prev;
 }						t_dlist;
 
+typedef struct			s_color
+{
+	SDL_Color			clr1;
+	SDL_Color			clr11;
+	SDL_Color			clr2;
+	SDL_Color			clr22;
+}						t_color;
+
 typedef struct			s_visual
 {
 	SDL_Window			*window;
 	SDL_Renderer		*renderer;
 	SDL_Event			e;
 	SDL_AudioDeviceID	device_id;
-	SDL_Color			clr_p1;
-	SDL_Color			clr_p2;
+	//SDL_Color			clr_p1;
+	//SDL_Color			clr_p2;
 	SDL_Color			clr_vs;
+	t_color				clrs[NB_COLOR];
 	Uint8				*wav_buffer;
 	t_dlist				*lst;
 	int					map_h;
 	int					map_w;
 	int					rect_w;
+	int					c;
 	int					pause;
-	int					space;
 	int					start_x;
 	int					start_y;
 	char				*p1_name;
@@ -78,6 +88,7 @@ int		write_p2(t_visual *v);
 int		write_vs(t_visual *v);
 void	draw_blank(t_visual *v);
 void	reset_game(t_visual *v, t_dlist **begin);
+void	change_color(t_visual *v, t_dlist *begin);
 void	ft_sdlclose(t_visual *v);
 int		parser(t_visual *v, t_dlist **node);
 int		rec_game(t_visual *v);
