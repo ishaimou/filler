@@ -14,7 +14,7 @@
 
 int		main(int argc, char *argv[])
 {
-	SDL_Event	e;
+	//SDL_Event	e;
 	t_visual	v;
 	int			close;
 	t_dlist		*begin;
@@ -51,21 +51,28 @@ int		main(int argc, char *argv[])
 	close = 0;
 	while (!close)
 	{
-		while (SDL_PollEvent(&e))
+		while (SDL_PollEvent(&v.e))
 		{
-			if (e.type == SDL_QUIT)
+			if (v.e.type == SDL_QUIT)
 				close = 1;
-			if (e.type == SDL_KEYDOWN)
+			if (v.e.type == SDL_KEYDOWN)
 			{
-				if (e.key.keysym.sym == SDLK_ESCAPE)
+				if (v.e.key.keysym.sym == SDLK_ESCAPE)
 					close = 1;
-				if (e.key.keysym.sym == SDLK_RIGHT)
+				if (v.e.key.keysym.sym == SDLK_RIGHT)
 					draw_next(&v, &begin);
-				if (e.key.keysym.sym == SDLK_LEFT)
+				if (v.e.key.keysym.sym == SDLK_LEFT)
 					draw_prev(&v, &begin);
-				if (e.key.keysym.sym == SDLK_SPACE)
-					draw_loop(&v, &begin);
+				if (v.e.key.keysym.sym == SDLK_SPACE)
+					v.pause = (v.pause) ? 0 : 1;
+				if (v.e.key.keysym.sym == SDLK_r)
+					reset_game(&v, &begin);
 			}
+		}
+		if (begin->next && !v.pause)
+		{
+			draw_next(&v, &begin);
+			SDL_Delay(1000 / 24);
 		}
 	}
 	ft_sdlclose(&v);

@@ -82,11 +82,9 @@ void	draw_prev(t_visual *v, t_dlist **begin)
 	}
 }
 
-void	draw_loop(t_visual *v, t_dlist **begin)
+void	reset_game(t_visual *v, t_dlist **begin)
 {
-	while ((*begin)->next)
-	{
-		draw_next(v, begin);
-		SDL_Delay(1000 / 24);
-	}
+	(*begin) = v->lst;
+	v->pause = 1;
+	draw_curr(v, *begin);
 }

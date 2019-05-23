@@ -42,6 +42,7 @@ typedef struct			s_visual
 {
 	SDL_Window			*window;
 	SDL_Renderer		*renderer;
+	SDL_Event			e;
 	SDL_AudioDeviceID	device_id;
 	SDL_Color			clr_p1;
 	SDL_Color			clr_p2;
@@ -52,6 +53,7 @@ typedef struct			s_visual
 	int					map_w;
 	int					rect_w;
 	int					pause;
+	int					space;
 	int					start_x;
 	int					start_y;
 	char				*p1_name;
@@ -75,6 +77,7 @@ int		write_p1(t_visual *v);
 int		write_p2(t_visual *v);
 int		write_vs(t_visual *v);
 void	draw_blank(t_visual *v);
+void	reset_game(t_visual *v, t_dlist **begin);
 void	ft_sdlclose(t_visual *v);
 int		parser(t_visual *v, t_dlist **node);
 int		rec_game(t_visual *v);

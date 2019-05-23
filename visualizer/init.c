@@ -69,7 +69,8 @@ int		init_visual(t_visual *v)
 	v->map_h = 0;
 	v->map_w = 0;
 	v->rect_w = 0;
-	v->pause = 0;
+	v->pause = 1;
+	v->space = 0;
 	v->start_x = 0;
 	v->start_y = 0;
 	v->p1_name = NULL;
