@@ -62,14 +62,14 @@ void	init_color(t_visual *v)
 	v->clrs[0].clr11 = init_rgbclr(124, 185, 232, 255);
 	v->clrs[0].clr2 = init_rgbclr(196, 98, 16, 255);
 	v->clrs[0].clr22 = init_rgbclr(255, 126, 0, 255);
-	v->clrs[1].clr1 = init_rgbclr(92, 220, 162, 255);
-	v->clrs[1].clr11 = init_rgbclr(92, 220, 162, 255);
-	v->clrs[1].clr2 = init_rgbclr(92, 220, 162, 255);
-	v->clrs[1].clr22 = init_rgbclr(92, 220, 162, 255);
-	v->clrs[2].clr1 = init_rgbclr(92, 220, 162, 255);
-	v->clrs[2].clr11 = init_rgbclr(92, 220, 162, 255);
-	v->clrs[2].clr2 = init_rgbclr(92, 220, 162, 255);
-	v->clrs[2].clr22 = init_rgbclr(92, 220, 162, 255);
+	v->clrs[1].clr1 = init_rgbclr(171, 39, 79, 255);
+	v->clrs[1].clr11 = init_rgbclr(241, 156, 187, 255);
+	v->clrs[1].clr2 = init_rgbclr(59, 122, 87, 255);
+	v->clrs[1].clr22 = init_rgbclr(90, 186, 133, 255);
+	v->clrs[2].clr1 = init_rgbclr(145, 121, 0, 255);
+	v->clrs[2].clr11 = init_rgbclr(204, 169, 0, 255);
+	v->clrs[2].clr2 = init_rgbclr(81, 46, 115, 255);
+	v->clrs[2].clr22 = init_rgbclr(145, 83, 207, 255);
 }
 
 int		init_visual(t_visual *v)

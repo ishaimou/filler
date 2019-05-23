@@ -42,9 +42,9 @@ int		main(int argc, char *argv[])
 	*/
 	SDL_PauseAudioDevice(v.device_id, 0);
 	//SDL_RenderClear(v.renderer);
-	write_p1(&v);
-	write_p2(&v);
-	write_vs(&v);
+	write_p1(&v, 38);
+	write_p2(&v, 38);
+	write_vs(&v, 50);
 	begin = v.lst;
 	set_rectw(&v);
 	draw_curr(&v, begin);

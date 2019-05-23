@@ -48,14 +48,14 @@ int		load_audio(t_visual *v)
 	return (1);
 }
 
-int		write_p1(t_visual *v)
+int		write_p1(t_visual *v, int size)
 {
 	TTF_Font	*font;
 	SDL_Surface	*surface1;
 	SDL_Texture	*p1_name_tex;
 	SDL_Rect	dstrect;
 
-	font = TTF_OpenFont(PL_FONT, 38);
+	font = TTF_OpenFont(PL_FONT, size);
 	if (!font)
 	{
 		ft_printf("Could not open \"%s\" TTF_Error: %s\n", PL_FONT, TTF_GetError());
@@ -73,7 +73,7 @@ int		write_p1(t_visual *v)
 	return (1);
 }
 
-int		write_p2(t_visual *v)
+int		write_p2(t_visual *v, int size)
 {
 	TTF_Font	*font;
 	SDL_Surface	*surface2;
@@ -81,7 +81,7 @@ int		write_p2(t_visual *v)
 	SDL_Rect	dstrect;
 
 
-	font = TTF_OpenFont(PL_FONT, 38);
+	font = TTF_OpenFont(PL_FONT, size);
 	if (!font)
 	{
 		ft_printf("Could not open \"%s\" TTF_Error: %s\n", PL_FONT, TTF_GetError());
@@ -99,14 +99,14 @@ int		write_p2(t_visual *v)
 	return (1);
 }
 
-int		write_vs(t_visual *v)
+int		write_vs(t_visual *v, int size)
 {
 	TTF_Font	*font;
 	SDL_Surface	*surface;
 	SDL_Texture	*vs_tex;
 	SDL_Rect	dstrect;
 
-	font = TTF_OpenFont(VS_FONT, 48);
+	font = TTF_OpenFont(VS_FONT, size);
 	if (!font)
 	{
 		ft_printf("Could not open \"%s\" TTF_Error: %s\n", VS_FONT, TTF_GetError());

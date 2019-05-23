@@ -103,8 +103,8 @@ void	change_color(t_visual *v, t_dlist *begin)
 		v->c = 0;
 	else
 		v->c++;
-	write_p1(v);
-	write_p2(v);
+	write_p1(v, 38);
+	write_p2(v, 38);
 	draw_curr(v, begin);
 }
 
