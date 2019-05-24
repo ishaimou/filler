@@ -14,38 +14,25 @@
 
 int		main(int argc, char *argv[])
 {
-	//SDL_Event	e;
 	t_visual	v;
 	int			close;
 	t_dlist		*begin;
-
+	
 	if (!init_visual(&v))
 		return (0);
 	if (!load_media(&v))
 		return (0);
 	if (!load_audio(&v))
 		return (0);
-	//Wait five seconds
-	//SDL_Delay(5000);
 	
 	if (!rec_game(&v))
 		return (0);
-	/*
-	ft_printf("%d\n", ft_list_size(v.lst));
-	print_list(v.lst);
-	printf("p1 = %s\n", v.p1_name);
-	printf("p2 = %s\n", v.p2_name);
-	printf("map_h = %d\n", v.map_h);
-	printf("map_w = %d\n", v.map_w);
-	printf("res_p1 = %d; res_p2 = %d\n", v.res_p1, v.res_p2);
-	*/
+	begin = v.lst;
+	set_rectw(&v);
 	SDL_PauseAudioDevice(v.device_id, v.mute);
-	//SDL_RenderClear(v.renderer);
 	write_p1(&v, 38);
 	write_p2(&v, 38);
 	write_vs(&v, 50);
-	begin = v.lst;
-	set_rectw(&v);
 	draw_background(&v);
 	draw_curr(&v, begin);
 	close = 0;

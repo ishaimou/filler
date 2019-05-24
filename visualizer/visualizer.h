@@ -32,10 +32,6 @@
 typedef struct			s_dlist
 {
 	char				**map;
-	char				**pc;
-	int					pc_h;
-	int					pc_w;
-	int					curr_p;
 	struct s_dlist		*next;
 	struct s_dlist		*prev;
 }						t_dlist;
@@ -50,13 +46,11 @@ typedef struct			s_color
 
 typedef struct			s_visual
 {
+	TTF_Font			*font;
 	SDL_Window			*window;
 	SDL_Renderer		*renderer;
 	SDL_Event			e;
 	SDL_AudioDeviceID	device_id;
-	TTF_Font			*font;
-	//SDL_Color			clr_p1;
-	//SDL_Color			clr_p2;
 	SDL_Color			clr_vs;
 	t_color				clrs[NB_COLOR];
 	Uint8				*wav_buffer;
@@ -75,8 +69,6 @@ typedef struct			s_visual
 	int					res_p1;
 	int					res_p2;
 	int					flag;
-	int					status;
-	int					last;
 }						t_visual;
 
 void	draw_curr(t_visual *v, t_dlist *begin);
@@ -96,7 +88,7 @@ void	reset_game(t_visual *v, t_dlist **begin);
 void	change_color(t_visual *v, t_dlist *begin);
 void	capture_screen(t_visual *v);
 void	ft_sdlclose(t_visual *v);
-int		parser(t_visual *v, t_dlist **node);
+int		parser(t_visual *v);
 int		rec_game(t_visual *v);
 void	free_node(t_dlist **node);
 void	free_list(t_dlist **begin);

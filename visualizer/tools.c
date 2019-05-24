@@ -48,11 +48,10 @@ void	print_list(t_dlist *begin)
 	int		i=0;
 	while (begin)
 	{
-		if (!begin->map || !begin->pc)
+		if (!begin->map)
 			i++;
-		print_map(begin->map);
 		ft_printf("\n");
-		print_map(begin->pc);
+		print_map(begin->map);
 		ft_printf("\n");
 		
 		begin = begin->next;
@@ -107,8 +106,6 @@ void	free_list(t_dlist **begin)
 		tmp = current;
 		if (current->map)
 			free_dbl(&(current->map));
-		if (current->pc)
-			free_dbl(&(current->pc));
 		current = current->next;
 		free(tmp);
 	}

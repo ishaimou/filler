@@ -12,6 +12,7 @@
 
 #include "visualizer.h"
 
+
 static int		init(t_visual *v)
 {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
@@ -74,13 +75,11 @@ void	init_color(t_visual *v)
 
 int		init_visual(t_visual *v)
 {
+	v->font	= NULL;
 	v->window = NULL;
 	v->renderer = NULL;
 	v->wav_buffer = NULL;
 	v->device_id = 0;
-	v->font = NULL;
-	//v->clr_p1 = init_rgbclr(93, 138, 168, 255);
-	//v->clr_p2 = init_rgbclr(196, 98, 16, 255);
 	v->clr_vs = init_rgbclr(239, 222, 205, 255);
 	init_color(v);
 	v->lst = NULL;
@@ -98,8 +97,6 @@ int		init_visual(t_visual *v)
 	v->res_p1 = 0;
 	v->res_p2 = 0;
 	v->flag = 0;
-	v->status = 0;
-	v->last = 0;
 	if (!init(v))
 		return (0);
 	return (1);
