@@ -210,7 +210,7 @@ void	capture_screen(t_visual *v)
 	int			height;
 	SDL_Surface	*surface;
 
-	format = SDL_PIXELFORMAT_ARGB32;
+	format = SDL_PIXELFORMAT_RGBA32;
 	width = SCREEN_WIDTH;
 	height = SCREEN_HEIGHT;
 	surface = SDL_CreateRGBSurfaceWithFormat(0, width, height, 32, format);

@@ -146,7 +146,6 @@ void	change_color(t_visual *v, t_dlist *begin)
 	write_p1(v, 38);
 	write_p2(v, 38);
 	draw_curr(v, begin);
-	printf("c = %d\n", v->c);
 	if (v->fin)
 		write_result(v);
 	SDL_RenderPresent(v->renderer);
