@@ -25,7 +25,6 @@ int		main(int argc, char *argv[])
 		return (0);
 	if (!load_audio(&v))
 		return (0);
-	
 	//Wait five seconds
 	//SDL_Delay(5000);
 	
@@ -40,13 +39,14 @@ int		main(int argc, char *argv[])
 	printf("map_w = %d\n", v.map_w);
 	printf("res_p1 = %d; res_p2 = %d\n", v.res_p1, v.res_p2);
 	*/
-	SDL_PauseAudioDevice(v.device_id, 0);
+	SDL_PauseAudioDevice(v.device_id, v.mute);
 	//SDL_RenderClear(v.renderer);
 	write_p1(&v, 38);
 	write_p2(&v, 38);
 	write_vs(&v, 50);
 	begin = v.lst;
 	set_rectw(&v);
+	draw_background(&v);
 	draw_curr(&v, begin);
 	close = 0;
 	while (!close)
@@ -69,9 +69,16 @@ int		main(int argc, char *argv[])
 					reset_game(&v, &begin);
 				if (v.e.key.keysym.sym == SDLK_c)
 					change_color(&v, begin);
+				if (v.e.key.keysym.sym == SDLK_s)
+					capture_screen(&v);
+				if (v.e.key.keysym.sym == SDLK_m)
+				{
+					v.mute = (v.mute) ? 0 : 1;
+					SDL_PauseAudioDevice(v.device_id, v.mute);
+				}
 			}
 		}
-		if (begin->next && !v.pause)
+		if (!v.pause)
 		{
 			draw_next(&v, &begin);
 			SDL_Delay(1000 / 24);

@@ -78,6 +78,7 @@ int		init_visual(t_visual *v)
 	v->renderer = NULL;
 	v->wav_buffer = NULL;
 	v->device_id = 0;
+	v->font = NULL;
 	//v->clr_p1 = init_rgbclr(93, 138, 168, 255);
 	//v->clr_p2 = init_rgbclr(196, 98, 16, 255);
 	v->clr_vs = init_rgbclr(239, 222, 205, 255);
@@ -88,6 +89,8 @@ int		init_visual(t_visual *v)
 	v->rect_w = 0;
 	v->c = 0;
 	v->pause = 1;
+	v->mute = 0;
+	v->fin = 0;
 	v->start_x = 0;
 	v->start_y = 0;
 	v->p1_name = NULL;

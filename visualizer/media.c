@@ -50,81 +50,180 @@ int		load_audio(t_visual *v)
 
 int		write_p1(t_visual *v, int size)
 {
-	TTF_Font	*font;
-	SDL_Surface	*surface1;
-	SDL_Texture	*p1_name_tex;
+	SDL_Surface	*surface;
+	SDL_Texture	*tex;
 	SDL_Rect	dstrect;
 
-	font = TTF_OpenFont(PL_FONT, size);
-	if (!font)
+	v->font = TTF_OpenFont(PL_FONT, size);
+	if (!v->font)
 	{
 		ft_printf("Could not open \"%s\" TTF_Error: %s\n", PL_FONT, TTF_GetError());
 		return (0);
 	}
-	surface1 = TTF_RenderText_Solid(font, v->p1_name, v->clrs[v->c].clr1);
-	p1_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface1);
-	SDL_QueryTexture(p1_name_tex, NULL, NULL, &dstrect.w, &dstrect.h);
+	surface = TTF_RenderText_Solid(v->font, v->p1_name, v->clrs[v->c].clr1);
+	tex = SDL_CreateTextureFromSurface(v->renderer, surface);
+	SDL_QueryTexture(tex, NULL, NULL, &dstrect.w, &dstrect.h);
 	dstrect.x = (SCREEN_WIDTH - dstrect.w) / 6;
 	dstrect.y = (SCREEN_HEIGHT - dstrect.h) / 20;
-	SDL_RenderCopy(v->renderer, p1_name_tex, NULL, &dstrect);
-	SDL_FreeSurface(surface1);
-	SDL_DestroyTexture(p1_name_tex);
-	TTF_CloseFont(font);
+	SDL_RenderCopy(v->renderer, tex, NULL, &dstrect);
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(tex);
+	TTF_CloseFont(v->font);
 	return (1);
 }
 
 int		write_p2(t_visual *v, int size)
 {
-	TTF_Font	*font;
-	SDL_Surface	*surface2;
-	SDL_Texture	*p2_name_tex;
+	SDL_Surface	*surface;
+	SDL_Texture	*tex;
 	SDL_Rect	dstrect;
 
 
-	font = TTF_OpenFont(PL_FONT, size);
-	if (!font)
+	v->font = TTF_OpenFont(PL_FONT, size);
+	if (!v->font)
 	{
 		ft_printf("Could not open \"%s\" TTF_Error: %s\n", PL_FONT, TTF_GetError());
 		return (0);
 	}
-	surface2 = TTF_RenderText_Solid(font, v->p2_name, v->clrs[v->c].clr2);
-	p2_name_tex = SDL_CreateTextureFromSurface(v->renderer, surface2);
-	SDL_QueryTexture(p2_name_tex, NULL, NULL, &dstrect.w, &dstrect.h);
+	surface = TTF_RenderText_Solid(v->font, v->p2_name, v->clrs[v->c].clr2);
+	tex = SDL_CreateTextureFromSurface(v->renderer, surface);
+	SDL_QueryTexture(tex, NULL, NULL, &dstrect.w, &dstrect.h);
 	dstrect.x = 5 * (SCREEN_WIDTH - dstrect.w) / 6;
 	dstrect.y = (SCREEN_HEIGHT - dstrect.h) / 20;
-	SDL_RenderCopy(v->renderer, p2_name_tex, NULL, &dstrect);
-	SDL_FreeSurface(surface2);
-	SDL_DestroyTexture(p2_name_tex);
-	TTF_CloseFont(font);
+	SDL_RenderCopy(v->renderer, tex, NULL, &dstrect);
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(tex);
+	TTF_CloseFont(v->font);
 	return (1);
 }
 
 int		write_vs(t_visual *v, int size)
 {
-	TTF_Font	*font;
 	SDL_Surface	*surface;
-	SDL_Texture	*vs_tex;
+	SDL_Texture	*tex;
 	SDL_Rect	dstrect;
 
-	font = TTF_OpenFont(VS_FONT, size);
-	if (!font)
+	v->font = TTF_OpenFont(VS_FONT, size);
+	if (!v->font)
 	{
 		ft_printf("Could not open \"%s\" TTF_Error: %s\n", VS_FONT, TTF_GetError());
 		return (0);
 	}
-	surface = TTF_RenderText_Solid(font, "VS", v->clr_vs);
-	vs_tex = SDL_CreateTextureFromSurface(v->renderer, surface);
-	SDL_QueryTexture(vs_tex, NULL, NULL, &dstrect.w, &dstrect.h);
+	surface = TTF_RenderText_Solid(v->font, "VS", v->clr_vs);
+	tex = SDL_CreateTextureFromSurface(v->renderer, surface);
+	SDL_QueryTexture(tex, NULL, NULL, &dstrect.w, &dstrect.h);
 	dstrect.x = (SCREEN_WIDTH - dstrect.w) / 2;
 	dstrect.y = (SCREEN_HEIGHT - dstrect.h) / 20;
-	SDL_RenderCopy(v->renderer, vs_tex, NULL, &dstrect);
+	SDL_RenderCopy(v->renderer, tex, NULL, &dstrect);
 	SDL_FreeSurface(surface);
-	SDL_DestroyTexture(vs_tex);
-	TTF_CloseFont(font);
+	SDL_DestroyTexture(tex);
+	TTF_CloseFont(v->font);
 	return (1);
 }
 
+void	write_score_p1(t_visual *v, int size)
+{
+	SDL_Rect	dstrect;
+	SDL_Surface	*surface;
+	SDL_Texture	*tex;
+	char		*string;
+	char		*score;
+	
+	score = ft_itoa(v->res_p1);
+	string = ft_strjoin("Score: ", score);
+	v->font = TTF_OpenFont(FONT, size);
+	surface = TTF_RenderText_Solid(v->font, string, v->clrs[v->c].clr1);
+	tex = SDL_CreateTextureFromSurface(v->renderer, surface);
+	SDL_QueryTexture(tex, NULL, NULL, &dstrect.w, &dstrect.h);
+	dstrect.x = (SCREEN_WIDTH - dstrect.w) / 6;
+	dstrect.y = 3 * (SCREEN_HEIGHT - dstrect.h) / 20;
+	SDL_RenderCopy(v->renderer, tex, NULL, &dstrect);
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(tex);
+	TTF_CloseFont(v->font);
+	free(score);
+	free(string);
+}
 
+void	write_score_p2(t_visual *v, int size)
+{
+	SDL_Rect	dstrect;
+	SDL_Surface	*surface;
+	SDL_Texture	*tex;
+	char		*string;
+	char		*score;
+	
+	score = ft_itoa(v->res_p2);
+	string = ft_strjoin("Score: ", score);
+	v->font = TTF_OpenFont(FONT, size);
+	surface = TTF_RenderText_Solid(v->font, string, v->clrs[v->c].clr2);
+	tex = SDL_CreateTextureFromSurface(v->renderer, surface);
+	SDL_QueryTexture(tex, NULL, NULL, &dstrect.w, &dstrect.h);
+	dstrect.x = 5 * (SCREEN_WIDTH - dstrect.w) / 6;
+	dstrect.y = 3 * (SCREEN_HEIGHT - dstrect.h) / 20;
+	SDL_RenderCopy(v->renderer, tex, NULL, &dstrect);
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(tex);
+	TTF_CloseFont(v->font);
+	free(score);
+	free(string);
+}
 
+void	write_winner(t_visual *v, int size)
+{
+	SDL_Rect	dstrect;
+	char		*string;
+	SDL_Texture	*tex;
+	SDL_Surface	*surface;
 
+	v->font = TTF_OpenFont(PL_FONT, size);
+	if (v->res_p1 > v->res_p2)
+	{
+		string = ft_strjoin("WINNER IS ", v->p1_name);
+		surface = TTF_RenderText_Solid(v->font, string, v->clrs[v->c].clr1);
+	}
+	else if (v->res_p2 > v->res_p1)
+	{
+		string = ft_strjoin("WINNER IS ", v->p2_name);
+		surface = TTF_RenderText_Solid(v->font, string, v->clrs[v->c].clr2);
+	}
+	else
+	{
+		string = ft_strdup("Draw match");
+		surface = TTF_RenderText_Solid(v->font, string, v->clr_vs);
+	}	
+	tex = SDL_CreateTextureFromSurface(v->renderer, surface);
+	SDL_QueryTexture(tex, NULL, NULL, &dstrect.w, &dstrect.h);
+	dstrect.x = (SCREEN_WIDTH - dstrect.w) / 2;
+	dstrect.y = 8 * (SCREEN_HEIGHT - dstrect.h) / 10;
+	SDL_RenderCopy(v->renderer, tex, NULL, &dstrect);
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(tex);
+	TTF_CloseFont(v->font);
+	free(string);
+}
 
+void	capture_screen(t_visual *v)
+{
+	int			format;
+	int			width;
+	int			height;
+	SDL_Surface	*surface;
+
+	format = SDL_PIXELFORMAT_ARGB32;
+	width = SCREEN_WIDTH;
+	height = SCREEN_HEIGHT;
+	surface = SDL_CreateRGBSurfaceWithFormat(0, width, height, 32, format);
+	SDL_RenderReadPixels(v->renderer, NULL, format, surface->pixels, surface->pitch);
+	IMG_SavePNG(surface, "screenshot.png");
+	SDL_FreeSurface(surface);
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,"Filler Visualizer",
+		"Screenshot taken!\nCheck the project root folder\nEnjoy :)", v->window);
+}
+
+void	write_result(t_visual *v)
+{
+	write_score_p1(v, 38);
+	write_score_p2(v, 38);
+	write_winner(v, 38);
+}
