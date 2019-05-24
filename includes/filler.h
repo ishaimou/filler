@@ -46,11 +46,11 @@ void				create_hmap(t_filler *fil);
 void				generate_heat(t_filler *fil);
 void				craft_piece(t_filler *fil);
 void				get_coord(t_filler *fil);
-void				free_fil(t_filler *fil);
 int					is_valid_pos(t_filler *fil, int x, int y);
 int					is_dots(char *s);
 void				print_hmap(t_filler *fil, int **hmap); //
 void				print_map(char **map); //
 void				free_hmap(int ***tab, int size);
+void				free_fil(t_filler *fil);
 
 #endif
