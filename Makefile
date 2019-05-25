@@ -6,7 +6,7 @@
 #    By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/09 00:12:48 by ishaimou          #+#    #+#              #
-#    Updated: 2019/05/10 23:44:11 by ishaimou         ###   ########.fr        #
+#    Updated: 2019/05/25 07:12:12 by ishaimou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = ishaimou.filler
 
 LIB_NAME = libft.a
 
-LIB = -L./libft -lft
+LIB = -L ./libft -lft
 
 LIB_DIR = ./libft
 
