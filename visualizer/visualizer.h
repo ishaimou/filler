@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 01:51:21 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/21 07:04:40 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 00:13:37 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,31 +71,36 @@ typedef struct			s_visual
 	int					flag;
 }						t_visual;
 
-void	draw_curr(t_visual *v, t_dlist *begin);
-void	draw_next(t_visual *v, t_dlist **begin);
-void	draw_prev(t_visual *v, t_dlist **begin);
-void	draw_loop(t_visual *v, t_dlist **begin);
-void	set_rectw(t_visual *v);
-int		init_visual(t_visual *v);
-int		load_media(t_visual *v);
-int		load_audio(t_visual *v);
-int		write_p1(t_visual *v, int size);
-int		write_p2(t_visual *v, int size);
-int		write_vs(t_visual *v, int size);
-void	write_result(t_visual *v);
-void	draw_background(t_visual *v);
-void	reset_game(t_visual *v, t_dlist **begin);
-void	change_color(t_visual *v, t_dlist *begin);
-void	capture_screen(t_visual *v);
-void	ft_sdlclose(t_visual *v);
-int		parser(t_visual *v);
-int		rec_game(t_visual *v);
-void	free_node(t_dlist **node);
-void	free_list(t_dlist **begin);
-void	free_visual(t_visual *v);
-void	print_map(char **map);
-void	print_list(t_dlist *begin);
-int		ft_list_size(t_dlist *begin_list);
+t_dlist					*ft_dlst_new(void);
+t_dlist					*ft_dlst_addnode(t_dlist **head);
+int						parser(t_visual *v);
+int						get_players(t_visual *v);
+void					get_result(t_visual *v, char **s);
+void					draw_background(t_visual *v);
+void					draw_curr(t_visual *v, t_dlist *begin);
+void					draw_next(t_visual *v, t_dlist **begin);
+void					draw_prev(t_visual *v, t_dlist **begin);
+void					draw_loop(t_visual *v, t_dlist **begin);
+void					set_rectw(t_visual *v);
+int						init_visual(t_visual *v);
+int						load_media(t_visual *v);
+int						load_audio(t_visual *v);
+int						write_p1(t_visual *v, int size);
+int						write_p2(t_visual *v, int size);
+int						write_vs(t_visual *v, int size);
+void					write_result(t_visual *v);
+void					draw_blackbg(t_visual *v);
+void					draw_background(t_visual *v);
+void					reset_game(t_visual *v, t_dlist **begin);
+void					change_color(t_visual *v, t_dlist *begin);
+void					capture_screen(t_visual *v);
+void					ft_sdlclose(t_visual *v);
+void					free_node(t_dlist **node); //!!!!!!!!!!
+void					free_list(t_dlist **begin);
+void					free_visual(t_visual *v);
+void					print_map(char **map); //!!!!!!!!!!!
+void					print_list(t_dlist *begin); //!!!!!!!!!
+int						ft_list_size(t_dlist *begin_list); //!!!!!!!
 
 
 #endif

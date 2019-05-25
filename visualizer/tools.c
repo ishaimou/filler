@@ -6,11 +6,40 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 00:26:45 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/21 07:04:39 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/24 23:16:30 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visualizer.h"
+
+t_dlist	*ft_dlst_new(void)
+{
+	t_dlist	*node;
+
+	if (!(node = (t_dlist*)malloc(sizeof(t_dlist))))
+		return (NULL);
+	node->map = NULL;
+	node->next = NULL;
+	node->prev = NULL;
+	return (node);
+}
+
+t_dlist	*ft_dlst_addnode(t_dlist **head)
+{
+	t_dlist	*tmp;
+
+	if (!*head)
+	{
+		*head = ft_dlst_new();
+		return (*head);
+	}
+	tmp = *head;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = ft_dlst_new();
+	tmp->next->prev = tmp;
+	return (tmp->next);
+}
 
 void	set_rectw(t_visual *v)
 {
@@ -34,6 +63,7 @@ void	set_rectw(t_visual *v)
 	}
 }
 
+/*
 void	print_map(char **map)
 {
 	while (*map)
@@ -80,7 +110,7 @@ void	free_node(t_dlist **node)
 		(*node)->prev->next = NULL;
 	}
 }
-
+*/
 void	free_dbl(char ***tab)
 {
 	int		i;
