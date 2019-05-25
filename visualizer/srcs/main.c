@@ -6,13 +6,13 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:32:51 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 08:04:24 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 08:28:38 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visualizer.h"
 
-int		load_media(t_visual *v)
+int				load_media(t_visual *v)
 {
 	if (!init(v))
 	{
@@ -32,7 +32,7 @@ int		load_media(t_visual *v)
 	return (1);
 }
 
-void		preset(t_visual *v, t_dlist **begin)
+void			preset(t_visual *v, t_dlist **begin)
 {
 	*begin = v->lst;
 	set_rectw(v);
@@ -41,7 +41,7 @@ void		preset(t_visual *v, t_dlist **begin)
 	SDL_RenderPresent(v->renderer);
 }
 
-void	event_loop(t_visual *v, t_dlist **begin)
+void			event_loop(t_visual *v, t_dlist **begin)
 {
 	while (SDL_PollEvent(&(v->e)))
 	{
@@ -52,7 +52,7 @@ void	event_loop(t_visual *v, t_dlist **begin)
 	}
 }
 
-int		main(int argc, char *argv[])
+int				main(int argc, char *argv[])
 {
 	t_visual	v;
 	t_dlist		*begin;

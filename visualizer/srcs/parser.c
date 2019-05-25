@@ -6,13 +6,13 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:39:24 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 05:39:37 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 08:31:17 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visualizer.h"
 
-void	get_hw(t_visual *v, char **s)
+void		get_hw(t_visual *v, char **s)
 {
 	char	*tmp;
 
@@ -27,7 +27,7 @@ void	get_hw(t_visual *v, char **s)
 	*s = NULL;
 }
 
-void	get_map(t_visual *v, t_dlist **node)
+void		get_map(t_visual *v, t_dlist **node)
 {
 	char	*line;
 	int		i;
@@ -47,9 +47,9 @@ void	get_map(t_visual *v, t_dlist **node)
 	(*node)->map[i] = NULL;
 }
 
-void	parse_line(t_visual *v, char  **line)
+void		parse_line(t_visual *v, char **line)
 {
-	t_dlist		*node;
+	t_dlist	*node;
 
 	node = NULL;
 	if (ft_strstr(*line, "Plateau"))
@@ -59,7 +59,6 @@ void	parse_line(t_visual *v, char  **line)
 			get_hw(v, line);
 		else
 			free(*line);
-
 		get_map(v, &node);
 	}
 	else if (ft_strstr(*line, "fin"))
@@ -68,10 +67,10 @@ void	parse_line(t_visual *v, char  **line)
 		free(*line);
 }
 
-int		parser(t_visual *v)
+int			parser(t_visual *v)
 {
-	char *line;
-	
+	char	*line;
+
 	if (!get_players(v))
 		return (0);
 	while (1)

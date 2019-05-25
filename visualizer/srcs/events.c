@@ -6,15 +6,14 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 04:57:59 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 05:31:41 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 08:23:49 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visualizer.h"
 
-void	draw_next(t_visual *v, t_dlist **begin)
+void		draw_next(t_visual *v, t_dlist **begin)
 {
-
 	if (!(*begin)->next)
 	{
 		v->fin = 1;
@@ -51,7 +50,7 @@ static void	reset_game(t_visual *v, t_dlist **begin)
 {
 	(*begin) = v->lst;
 	v->pause = 1;
-	v->fin = 0;	
+	v->fin = 0;
 	draw_background(v, *begin);
 	SDL_RenderPresent(v->renderer);
 }
@@ -68,7 +67,7 @@ static void	change_color(t_visual *v, t_dlist *begin)
 	SDL_RenderPresent(v->renderer);
 }
 
-void	handle_keyevents(t_visual *v, t_dlist **begin)
+void		handle_keyevents(t_visual *v, t_dlist **begin)
 {
 	if (v->e.key.keysym.sym == SDLK_ESCAPE)
 		v->close = 1;

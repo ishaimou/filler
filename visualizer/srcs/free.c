@@ -6,12 +6,11 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 07:36:35 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 07:22:34 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 08:25:02 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visualizer.h"
-
 
 static void	free_dbl(char ***tab)
 {
@@ -31,7 +30,7 @@ static void	free_list(t_dlist **begin)
 {
 	t_dlist	*tmp;
 	t_dlist	*current;
-	
+
 	current = *begin;
 	while (current)
 	{
@@ -44,7 +43,7 @@ static void	free_list(t_dlist **begin)
 	*begin = NULL;
 }
 
-void	free_visual(t_visual *v)
+void		free_visual(t_visual *v)
 {
 	if (v->p1_name)
 		free(v->p1_name);
@@ -53,7 +52,7 @@ void	free_visual(t_visual *v)
 	free_list(&(v->lst));
 }
 
-void	ft_sdlclose(t_visual *v)
+void		ft_sdlclose(t_visual *v)
 {
 	SDL_CloseAudioDevice(v->device_id);
 	SDL_FreeWAV(v->wav_buffer);

@@ -6,21 +6,21 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 01:51:21 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 08:04:23 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 08:46:25 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VISUALIZER_H
 # define VISUALIZER_H
 
-#define SCREEN_WIDTH  1024 
-#define SCREEN_HEIGHT 1200
-#define FONT	"/media/arial.ttf"
-#define PL_FONT "/media/got.ttf"
-#define	VS_FONT "/media/chinese.ttf"
-#define BG_AUDIO "/media/Fantasia.wav"
-#define BG_WALL "/media/bg2.jpg"
-#define	NB_COLOR 3
+# define SCREEN_WIDTH  1024
+# define SCREEN_HEIGHT 1200
+# define FONT	"/media/arial.ttf"
+# define PL_FONT "/media/got.ttf"
+# define VS_FONT "/media/chinese.ttf"
+# define BG_AUDIO "/media/Fantasia.wav"
+# define BG_WALL "/media/bg2.jpg"
+# define NB_COLOR 3
 
 # include <SDL.h>
 # include <SDL_image.h>

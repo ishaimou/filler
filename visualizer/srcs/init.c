@@ -6,13 +6,13 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:34:24 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 08:04:24 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 08:27:49 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visualizer.h"
 
-SDL_Color	init_rgbclr(int r, int g, int b, int a)
+SDL_Color		init_rgbclr(int r, int g, int b, int a)
 {
 	SDL_Color	clr;
 
@@ -23,7 +23,7 @@ SDL_Color	init_rgbclr(int r, int g, int b, int a)
 	return (clr);
 }
 
-void	init_color(t_visual *v)
+void			init_color(t_visual *v)
 {
 	v->clrs[0].clr1 = init_rgbclr(93, 138, 168, 255);
 	v->clrs[0].clr11 = init_rgbclr(124, 185, 232, 255);
@@ -39,9 +39,9 @@ void	init_color(t_visual *v)
 	v->clrs[2].clr22 = init_rgbclr(145, 83, 207, 255);
 }
 
-void	init_visual(t_visual *v)
+void			init_visual(t_visual *v)
 {
-	v->font	= NULL;
+	v->font = NULL;
 	v->window = NULL;
 	v->renderer = NULL;
 	v->wav_buffer = NULL;
@@ -66,13 +66,15 @@ void	init_visual(t_visual *v)
 	v->flag = 0;
 }
 
-int		init_window(t_visual *v)
+int				init_window(t_visual *v)
 {
 	v->window = SDL_CreateWindow("filler visualizer", SDL_WINDOWPOS_UNDEFINED,
-			SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+			SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
+			SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 	if (v->window == NULL)
 	{
-		ft_printf("window could not be created! SDL_ERROR: %s\n", SDL_GetError());
+		ft_printf("window could not be created! SDL_ERROR: %s\n",
+				SDL_GetError());
 		return (0);
 	}
 	v->renderer = SDL_CreateRenderer(v->window, -1, SDL_RENDERER_ACCELERATED);
@@ -84,7 +86,7 @@ int		init_window(t_visual *v)
 	return (1);
 }
 
-int		init(t_visual *v)
+int				init(t_visual *v)
 {
 	init_visual(v);
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)

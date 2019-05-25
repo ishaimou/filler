@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/25 08:18:12 by ishaimou          #+#    #+#             */
+/*   Updated: 2019/05/25 08:19:26 by ishaimou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "visualizer.h"
 
-static void	draw_blackbg(t_visual *v)
+static void		draw_blackbg(t_visual *v)
 {
 	SDL_Rect	rect;
 
@@ -12,7 +24,7 @@ static void	draw_blackbg(t_visual *v)
 	SDL_RenderFillRect(v->renderer, &rect);
 }
 
-void	draw_background(t_visual *v, t_dlist *begin)
+void			draw_background(t_visual *v, t_dlist *begin)
 {
 	load_bg(v);
 	write_p1(v, 38);
@@ -22,8 +34,7 @@ void	draw_background(t_visual *v, t_dlist *begin)
 	draw_curr(v, begin);
 }
 
-
-void	draw_curr(t_visual *v, t_dlist *begin)
+void			draw_curr(t_visual *v, t_dlist *begin)
 {
 	int			i;
 	int			j;

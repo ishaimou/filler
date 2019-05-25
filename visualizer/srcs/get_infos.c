@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 23:18:36 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/24 23:30:00 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 08:25:36 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int			get_players(t_visual *v)
 	return (1);
 }
 
-void	get_result(t_visual *v, char **s)
+void		get_result(t_visual *v, char **s)
 {
 	char	*tmp;
 

@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 00:26:45 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 04:21:23 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 08:44:12 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,13 @@ void	capture_screen(t_visual *v)
 	width = SCREEN_WIDTH;
 	height = SCREEN_HEIGHT;
 	surface = SDL_CreateRGBSurfaceWithFormat(0, width, height, 32, format);
-	SDL_RenderReadPixels(v->renderer, NULL, format, surface->pixels, surface->pitch);
+	SDL_RenderReadPixels(v->renderer, NULL,
+			format, surface->pixels, surface->pitch);
 	IMG_SavePNG(surface, "screenshot.png");
 	SDL_FreeSurface(surface);
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION,"Filler Visualizer",
-		"Screenshot taken!\nCheck the project root folder\nEnjoy :)", v->window);
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Filler Visualizer",
+		"Screenshot taken!\nCheck the project root folder\nEnjoy :)",
+		v->window);
 }
 
 void	set_rectw(t_visual *v)
