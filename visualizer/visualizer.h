@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 01:51:21 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 00:13:37 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 01:46:45 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //Screen dimension macros
 #define SCREEN_WIDTH  1024 
-#define SCREEN_HEIGHT 768
+#define SCREEN_HEIGHT 1200
 #define FONT	"/media/arial.ttf"
 #define PL_FONT "/media/got.ttf"
 #define	VS_FONT "/media/chinese.ttf"

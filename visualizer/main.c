@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:32:51 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 01:01:58 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 01:10:15 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ int		main(int argc, char *argv[])
 		return (0);
 	begin = v.lst;
 	set_rectw(&v);
-	SDL_PauseAudioDevice(v.device_id, v.mute);
-	//write_p1(&v, 38);
-	//write_p2(&v, 38);
-	//write_vs(&v, 50);
-	//draw_blackbg(&v);
+	SDL_PauseAudioDevice(v.device_id, 0);
 	draw_background(&v);
 	draw_curr(&v, begin);
 	SDL_RenderPresent(v.renderer);

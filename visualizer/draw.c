@@ -154,7 +154,3 @@ void	draw_background(t_visual *v)
 	write_vs(v, 50);
 	draw_blackbg(v);
 }
-
-
-
-
