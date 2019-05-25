@@ -6,39 +6,11 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:20:36 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/10 18:33:44 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 09:42:49 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-void	print_map(char **map)
-{
-	while (*map)
-	{
-		printf("%s\n", *map);
-		map++;
-	}
-}
-
-void	print_hmap(t_filler fil)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < fil.h)
-	{
-		j = 0;
-		while (j < fil.w)
-		{
-			printf("%2d ", fil.hmap[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}
 
 int		main(void)
 {

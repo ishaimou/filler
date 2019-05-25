@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:20:51 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/12 23:56:01 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 10:44:25 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,8 @@ void				get_coord(t_filler *fil);
 void				free_fil(t_filler *fil);
 int					is_valid_pos(t_filler *fil, int x, int y);
 int					is_dots(char *s);
+void				print_hmap(t_filler *fil, int **hmap); //
+void				print_map(char **map); //
+void				free_hmap(int ***tab, int size);
 
 #endif

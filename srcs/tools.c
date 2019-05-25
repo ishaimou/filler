@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:22:58 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/12 23:56:23 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 09:47:10 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,3 +76,34 @@ void	free_fil(t_filler *fil)
 	free_dbl(&fil->pc);
 	free_hmap(&fil->hmap, fil->h);
 }
+
+
+void	print_map(char **map)
+{
+	while (*map)
+	{
+		printf("%s\n", *map);
+		map++;
+	}
+}
+
+void	print_hmap(t_filler *fil, int **hmap)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < fil->h)
+	{
+		j = 0;
+		while (j < fil->w)
+		{
+			printf("%2d ", hmap[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}
+
+
