@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 00:26:45 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 08:44:12 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 09:25:10 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,20 @@ void	set_rectw(t_visual *v)
 {
 	if (v->map_h <= 15)
 	{
-		v->rect_w = 20;
-		v->start_x = (SCREEN_WIDTH - v->map_w) / 3;
+		v->rect_w = 30;
+		v->start_x = 2 * (SCREEN_WIDTH - v->map_w) / 7;
 		v->start_y = (SCREEN_HEIGHT - v->map_h) / 4;
 	}
 	else if (v->map_h > 15 && v->map_h <= 24)
 	{
-		v->rect_w = 15;
+		v->rect_w = 20;
 		v->start_x = (SCREEN_WIDTH - v->map_w) / 5;
 		v->start_y = (SCREEN_HEIGHT - v->map_h) / 4;
 	}
 	else if (v->map_h > 24 && v->map_h <= 100)
 	{
-		v->rect_w = 7;
-		v->start_x = (SCREEN_WIDTH - v->map_w) / 7;
+		v->rect_w = 6;
+		v->start_x = (SCREEN_WIDTH - v->map_w) / 4;
 		v->start_y = (SCREEN_HEIGHT - v->map_h) / 5;
 	}
 }

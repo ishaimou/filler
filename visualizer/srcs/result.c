@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 04:05:25 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 08:42:33 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 09:25:08 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			write_score_p1(t_visual *v, int size)
 	tex = SDL_CreateTextureFromSurface(v->renderer, surface);
 	SDL_QueryTexture(tex, NULL, NULL, &dstrect.w, &dstrect.h);
 	dstrect.x = (SCREEN_WIDTH - dstrect.w) / 6;
-	dstrect.y = 3 * (SCREEN_HEIGHT - dstrect.h) / 20;
+	dstrect.y = (SCREEN_HEIGHT - dstrect.h) / 10;
 	SDL_RenderCopy(v->renderer, tex, NULL, &dstrect);
 	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(tex);
@@ -51,7 +51,7 @@ void			write_score_p2(t_visual *v, int size)
 	tex = SDL_CreateTextureFromSurface(v->renderer, surface);
 	SDL_QueryTexture(tex, NULL, NULL, &dstrect.w, &dstrect.h);
 	dstrect.x = 5 * (SCREEN_WIDTH - dstrect.w) / 6;
-	dstrect.y = 3 * (SCREEN_HEIGHT - dstrect.h) / 20;
+	dstrect.y = (SCREEN_HEIGHT - dstrect.h) / 10;
 	SDL_RenderCopy(v->renderer, tex, NULL, &dstrect);
 	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(tex);
@@ -96,7 +96,7 @@ void			write_winner(t_visual *v, int size)
 	tex = SDL_CreateTextureFromSurface(v->renderer, surface);
 	SDL_QueryTexture(tex, NULL, NULL, &dstrect.w, &dstrect.h);
 	dstrect.x = (SCREEN_WIDTH - dstrect.w) / 2;
-	dstrect.y = 8 * (SCREEN_HEIGHT - dstrect.h) / 10;
+	dstrect.y = 9 * (SCREEN_HEIGHT - dstrect.h) / 10;
 	SDL_RenderCopy(v->renderer, tex, NULL, &dstrect);
 	SDL_FreeSurface(surface);
 	SDL_DestroyTexture(tex);

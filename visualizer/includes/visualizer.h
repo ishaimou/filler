@@ -6,15 +6,15 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 01:51:21 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 08:46:25 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/25 09:05:51 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VISUALIZER_H
 # define VISUALIZER_H
 
-# define SCREEN_WIDTH  1024
-# define SCREEN_HEIGHT 1200
+# define SCREEN_WIDTH  1280
+# define SCREEN_HEIGHT 1096
 # define FONT	"/media/arial.ttf"
 # define PL_FONT "/media/got.ttf"
 # define VS_FONT "/media/chinese.ttf"
