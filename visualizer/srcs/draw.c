@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 08:18:12 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 08:19:26 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/26 07:08:39 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,39 @@ void			draw_curr(t_visual *v, t_dlist *begin)
 			j++;
 		}
 		i++;
+	}
+}
+
+void			draw_next(t_visual *v, t_dlist **begin)
+{
+	if (!(*begin)->next)
+	{
+		v->fin = 1;
+		v->pause = 1;
+		draw_background(v, *begin);
+		write_result(v);
+		SDL_RenderPresent(v->renderer);
+	}
+	if ((*begin)->next)
+	{
+		*begin = (*begin)->next;
+		draw_background(v, *begin);
+		SDL_RenderPresent(v->renderer);
+	}
+}
+
+void			draw_prev(t_visual *v, t_dlist **begin)
+{
+	if (v->fin)
+	{
+		draw_background(v, *begin);
+		draw_curr(v, *begin);
+		v->fin = !v->fin;
+	}
+	if ((*begin)->prev)
+	{
+		*begin = (*begin)->prev;
+		draw_background(v, *begin);
+		SDL_RenderPresent(v->renderer);
 	}
 }

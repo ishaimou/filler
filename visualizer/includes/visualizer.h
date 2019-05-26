@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 01:51:21 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 09:05:51 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/26 07:04:45 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define PL_FONT "/media/got.ttf"
 # define VS_FONT "/media/chinese.ttf"
 # define BG_AUDIO "/media/Fantasia.wav"
-# define BG_WALL "/media/bg2.jpg"
+# define BG_WALL "/media/bg1.jpg"
 # define NB_COLOR 3
 
 # include <SDL.h>
@@ -52,12 +52,14 @@ typedef struct			s_visual
 	SDL_AudioDeviceID	device_id;
 	SDL_Color			clr_vs;
 	t_color				clrs[NB_COLOR];
+	int					speed[8];
 	Uint8				*wav_buffer;
 	t_dlist				*lst;
 	int					map_h;
 	int					map_w;
 	int					rect_w;
 	int					c;
+	int					s;
 	int					pause;
 	int					mute;
 	int					close;
@@ -73,11 +75,13 @@ typedef struct			s_visual
 
 t_dlist					*ft_dlst_new(void);
 t_dlist					*ft_dlst_addnode(t_dlist **head);
+SDL_Color				init_rgbclr(int r, int g, int b, int a);
 int						parser(t_visual *v);
 int						get_players(t_visual *v);
 void					get_result(t_visual *v, char **s);
 void					draw_curr(t_visual *v, t_dlist *begin);
 void					draw_next(t_visual *v, t_dlist **begin);
+void					draw_prev(t_visual *v, t_dlist **begin);
 void					draw_rect(t_visual *v, t_dlist *begin, int i, int j);
 void					set_rectw(t_visual *v);
 int						init(t_visual *v);
@@ -88,7 +92,6 @@ int						write_p2(t_visual *v, int size);
 int						write_vs(t_visual *v, int size);
 void					write_result(t_visual *v);
 void					draw_background(t_visual *v, t_dlist *begin);
-void					capture_screen(t_visual *v);
 void					handle_keyevents(t_visual *v, t_dlist **begin);
 void					free_visual(t_visual *v);
 void					ft_sdlclose(t_visual *v);

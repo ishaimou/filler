@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:22:58 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 09:47:10 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/26 06:12:23 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	free_fil(t_filler *fil)
 	free_hmap(&fil->hmap, fil->h);
 }
 
-
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 void	print_map(char **map)
 {
 	while (*map)
@@ -105,5 +105,3 @@ void	print_hmap(t_filler *fil, int **hmap)
 		i++;
 	}
 }
-
-

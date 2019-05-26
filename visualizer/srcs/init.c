@@ -6,21 +6,22 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:34:24 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 08:27:49 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/26 07:02:54 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visualizer.h"
 
-SDL_Color		init_rgbclr(int r, int g, int b, int a)
+void			init_speed(t_visual *v)
 {
-	SDL_Color	clr;
-
-	clr.r = r;
-	clr.g = g;
-	clr.b = b;
-	clr.a = a;
-	return (clr);
+	v->speed[0] = 24;
+	v->speed[1] = 60;
+	v->speed[2] = 256;
+	v->speed[3] = 500;
+	v->speed[4] = 1000;
+	v->speed[5] = 10000;
+	v->speed[6] = 100000;
+	v->speed[7] = 1000000;
 }
 
 void			init_color(t_visual *v)
@@ -48,11 +49,13 @@ void			init_visual(t_visual *v)
 	v->device_id = 0;
 	v->clr_vs = init_rgbclr(239, 222, 205, 255);
 	init_color(v);
+	init_speed(v);
 	v->lst = NULL;
 	v->map_h = 0;
 	v->map_w = 0;
 	v->rect_w = 0;
 	v->c = 0;
+	v->s = 0;
 	v->pause = 1;
 	v->mute = 0;
 	v->close = 0;

@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 02:32:51 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 09:25:09 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/26 06:51:43 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int				main(int argc, char *argv[])
 		if (!v.pause)
 		{
 			draw_next(&v, &begin);
-			SDL_Delay(1000 / 24);
+			SDL_Delay(1000 / v.speed[v.s]);
 		}
 	}
 	free_visual(&v);

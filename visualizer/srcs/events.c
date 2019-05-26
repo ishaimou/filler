@@ -6,47 +6,41 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 04:57:59 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 09:14:29 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/26 07:01:55 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "visualizer.h"
 
-void		draw_next(t_visual *v, t_dlist **begin)
+static void		capture_screen(t_visual *v)
 {
-	if (!(*begin)->next)
-	{
-		v->fin = 1;
-		v->pause = 1;
-		draw_background(v, *begin);
-		write_result(v);
-		SDL_RenderPresent(v->renderer);
-	}
-	if ((*begin)->next)
-	{
-		*begin = (*begin)->next;
-		draw_background(v, *begin);
-		SDL_RenderPresent(v->renderer);
-	}
+	int			format;
+	int			width;
+	int			height;
+	SDL_Surface	*surface;
+
+	format = SDL_PIXELFORMAT_RGBA32;
+	width = SCREEN_WIDTH;
+	height = SCREEN_HEIGHT;
+	surface = SDL_CreateRGBSurfaceWithFormat(0, width, height, 32, format);
+	SDL_RenderReadPixels(v->renderer, NULL,
+			format, surface->pixels, surface->pitch);
+	IMG_SavePNG(surface, "screenshot.png");
+	SDL_FreeSurface(surface);
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Filler Visualizer",
+		"Screenshot taken!\nCheck the project root folder\nEnjoy :)",
+		v->window);
 }
 
-static void	draw_prev(t_visual *v, t_dlist **begin)
+static void		change_speed(t_visual *v)
 {
-	if (v->fin)
-	{
-		draw_background(v, *begin);
-		draw_curr(v, *begin);
-		v->fin = !v->fin;
-	}
-	if ((*begin)->prev)
-	{
-		*begin = (*begin)->prev;
-		draw_background(v, *begin);
-		SDL_RenderPresent(v->renderer);
-	}
+	if (v->e.key.keysym.sym == SDLK_UP && v->s < 7)
+		v->s++;
+	if (v->e.key.keysym.sym == SDLK_DOWN && v->s > 0)
+		v->s--;
 }
 
-static void	reset_game(t_visual *v, t_dlist **begin)
+static void		reset_game(t_visual *v, t_dlist **begin)
 {
 	(*begin) = v->lst;
 	v->pause = 1;
@@ -55,7 +49,7 @@ static void	reset_game(t_visual *v, t_dlist **begin)
 	SDL_RenderPresent(v->renderer);
 }
 
-static void	change_color(t_visual *v, t_dlist *begin)
+static void		change_color(t_visual *v, t_dlist *begin)
 {
 	if (v->c == 2)
 		v->c = 0;
@@ -67,7 +61,7 @@ static void	change_color(t_visual *v, t_dlist *begin)
 	SDL_RenderPresent(v->renderer);
 }
 
-void		handle_keyevents(t_visual *v, t_dlist **begin)
+void			handle_keyevents(t_visual *v, t_dlist **begin)
 {
 	if (v->e.key.keysym.sym == SDLK_ESCAPE)
 		v->close = 1;
@@ -88,4 +82,8 @@ void		handle_keyevents(t_visual *v, t_dlist **begin)
 		v->mute = !v->mute;
 		SDL_PauseAudioDevice(v->device_id, v->mute);
 	}
+	if (v->e.key.keysym.sym == SDLK_UP)
+		change_speed(v);
+	if (v->e.key.keysym.sym == SDLK_DOWN)
+		change_speed(v);
 }
