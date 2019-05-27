@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:20:36 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/26 06:12:22 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/26 23:54:15 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		main(void)
 		if (get_env(&fil) == -1)
 			return (0);
 		create_hmap(&fil);
+		//printf("pos_x = %d ; pos_y = %d\n", fil.pos_x, fil.pos_y);
 		generate_heat(&fil);
 		/*	
 			printf("pl = %c; op = %c\n", fil.pl, fil.op);

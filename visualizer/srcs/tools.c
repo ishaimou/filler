@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 00:26:45 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/26 07:02:54 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/27 04:41:29 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,16 @@ SDL_Color		init_rgbclr(int r, int g, int b, int a)
 	clr.b = b;
 	clr.a = a;
 	return (clr);
+}
+
+void			draw_blackbg(t_visual *v)
+{
+	SDL_Rect	rect;
+
+	rect.x = v->start_x;
+	rect.y = v->start_y;
+	rect.h = v->map_h * v->rect_w + (v->map_h - 1);
+	rect.w = v->map_w * v->rect_w + (v->map_w - 1);
+	SDL_SetRenderDrawColor(v->renderer, 0, 0, 0, 255);
+	SDL_RenderFillRect(v->renderer, &rect);
 }

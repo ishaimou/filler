@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 01:51:21 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/26 07:04:45 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/27 04:41:05 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ void					get_result(t_visual *v, char **s);
 void					draw_curr(t_visual *v, t_dlist *begin);
 void					draw_next(t_visual *v, t_dlist **begin);
 void					draw_prev(t_visual *v, t_dlist **begin);
+void					draw_final(t_visual *v, t_dlist **begin);
 void					draw_rect(t_visual *v, t_dlist *begin, int i, int j);
+void					draw_blackbg(t_visual *v);
 void					set_rectw(t_visual *v);
 int						init(t_visual *v);
 int						load_bg(t_visual *v);

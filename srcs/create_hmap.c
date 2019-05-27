@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 00:10:40 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 10:44:25 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/26 23:54:17 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,14 @@ static void	init_hmap_i(t_filler *fil, int i)
 		if (*ft_strlowcase(&fil->map[i][j]) == fil->op)
 			fil->hmap[i][j] = -1;
 		if (*ft_strlowcase(&fil->map[i][j]) == fil->pl)
+		{
 			fil->hmap[i][j] = -2;
+			if (fil->pos_x == -1 && fil->pos_y == -1)
+			{
+				fil->pos_x = j;
+				fil->pos_y = i;
+			}
+		}
 		j++;
 	}
 }

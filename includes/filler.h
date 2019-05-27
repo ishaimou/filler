@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:20:51 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/25 10:44:25 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/26 23:54:16 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct		s_filler
 	int				h;
 	char			pl;
 	char			op;
+	int				pos_x;
+	int				pos_y;
 	int				flag;
 	int				score;
 	int				x_coord;

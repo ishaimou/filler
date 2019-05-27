@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 04:57:59 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/26 07:01:55 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/27 04:43:44 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,6 @@ void			handle_keyevents(t_visual *v, t_dlist **begin)
 		change_speed(v);
 	if (v->e.key.keysym.sym == SDLK_DOWN)
 		change_speed(v);
+	if (v->e.key.keysym.sym == SDLK_f)
+		draw_final(v, begin);
 }

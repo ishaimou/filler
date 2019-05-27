@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:22:58 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/26 06:12:23 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/26 22:04:45 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	init_fil(t_filler *fil)
 	fil->h = 0;
 	fil->pl = 0;
 	fil->op = 0;
+	fil->pos_x = -1;
+	fil->pos_y = -1;
 	fil->flag = 0;
 	fil->x_coord = 0;
 	fil->y_coord = 0;
