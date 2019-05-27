@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 04:57:59 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/27 04:43:44 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/27 05:00:06 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void			handle_keyevents(t_visual *v, t_dlist **begin)
 		draw_prev(v, begin);
 	if (v->e.key.keysym.sym == SDLK_SPACE)
 		v->pause = !v->pause;
-	if (v->e.key.keysym.sym == SDLK_r)
+	if (v->e.key.keysym.sym == SDLK_BACKSPACE)
 		reset_game(v, begin);
 	if (v->e.key.keysym.sym == SDLK_c)
 		change_color(v, *begin);
@@ -86,6 +86,6 @@ void			handle_keyevents(t_visual *v, t_dlist **begin)
 		change_speed(v);
 	if (v->e.key.keysym.sym == SDLK_DOWN)
 		change_speed(v);
-	if (v->e.key.keysym.sym == SDLK_f)
-		draw_final(v, begin);
+	if (v->e.key.keysym.sym == SDLK_r)
+		draw_result(v, begin);
 }

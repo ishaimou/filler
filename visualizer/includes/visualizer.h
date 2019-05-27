@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 01:51:21 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/27 04:41:05 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/27 05:20:14 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,16 @@ typedef struct			s_visual
 t_dlist					*ft_dlst_new(void);
 t_dlist					*ft_dlst_addnode(t_dlist **head);
 SDL_Color				init_rgbclr(int r, int g, int b, int a);
+void					event_loop(t_visual *v, t_dlist **begin);
+void					preset(t_visual *v, t_dlist **begin);
+int						load_media(t_visual *v);
 int						parser(t_visual *v);
 int						get_players(t_visual *v);
 void					get_result(t_visual *v, char **s);
 void					draw_curr(t_visual *v, t_dlist *begin);
 void					draw_next(t_visual *v, t_dlist **begin);
 void					draw_prev(t_visual *v, t_dlist **begin);
-void					draw_final(t_visual *v, t_dlist **begin);
+void					draw_result(t_visual *v, t_dlist **begin);
 void					draw_rect(t_visual *v, t_dlist *begin, int i, int j);
 void					draw_blackbg(t_visual *v);
 void					set_rectw(t_visual *v);
@@ -95,6 +98,7 @@ int						write_vs(t_visual *v, int size);
 void					write_result(t_visual *v);
 void					draw_background(t_visual *v, t_dlist *begin);
 void					handle_keyevents(t_visual *v, t_dlist **begin);
+void					print_usage(void);
 void					free_visual(t_visual *v);
 void					ft_sdlclose(t_visual *v);
 

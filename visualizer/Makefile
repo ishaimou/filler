@@ -6,7 +6,7 @@
 #    By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/25 05:56:44 by ishaimou          #+#    #+#              #
-#    Updated: 2019/05/26 07:06:41 by ishaimou         ###   ########.fr        #
+#    Updated: 2019/05/27 05:20:49 by ishaimou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ H_SDL2_TTF = ~/.brew/Cellar/sdl2_ttf/2.0.14/include/SDL2
 FLAGS = -Wall -Werror -Wextra
 
 SRCS = init.c parser.c background.c draw.c draw_rect.c main.c\
-		result.c events.c get_infos.c tools.c free.c
+		event_loop.c result.c events.c get_infos.c tools.c free.c
 
 SRCS_DIR = $(addprefix srcs/, $(SRCS))
 

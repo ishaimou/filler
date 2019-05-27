@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 08:18:12 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/27 04:43:44 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/27 05:00:28 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void			draw_prev(t_visual *v, t_dlist **begin)
 	}
 }
 
-void			draw_final(t_visual *v, t_dlist **begin)
+void			draw_result(t_visual *v, t_dlist **begin)
 {
 	while ((*begin)->next)
 		*begin = (*begin)->next;
