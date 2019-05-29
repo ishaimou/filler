@@ -6,7 +6,7 @@
 #    By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/09 00:12:48 by ishaimou          #+#    #+#              #
-#    Updated: 2019/05/25 07:12:12 by ishaimou         ###   ########.fr        #
+#    Updated: 2019/05/27 09:46:03 by ishaimou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ H_DIR = ./includes
 FLAGS = -Wall -Werror -Wextra
 
 SRCS = get_coord.c craft_piece.c create_hmap.c heatmap.c \
-		read_env.c rules.c tools.c main.c
+		target.c free.c read_env.c rules.c tools.c main.c
 
 SRCS_DIR = $(addprefix srcs/, $(SRCS))
 
@@ -36,7 +36,7 @@ all: $(NAME)
 $(NAME):
 	@make -C $(LIB_DIR)
 	@echo "$(BGREEN)$(LIB_NAME) has been created successfully.$(RESET)"
-	@gcc -o $(NAME) $(SRCS_DIR) -I $(H_DIR) -I $(LIB_DIR) $(LIB) $(FLAGS)
+	@gcc -g -o $(NAME) $(SRCS_DIR) -I $(H_DIR) -I $(LIB_DIR) $(LIB) $(FLAGS)
 	@echo "$(BGREEN)$(NAME) has been created successfully.$(RESET)"
 
 clean:

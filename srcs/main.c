@@ -6,7 +6,7 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:20:36 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/26 23:54:15 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/27 09:17:16 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,8 @@ int		main(void)
 		if (get_env(&fil) == -1)
 			return (0);
 		create_hmap(&fil);
-		//printf("pos_x = %d ; pos_y = %d\n", fil.pos_x, fil.pos_y);
-		generate_heat(&fil);
-		/*	
-			printf("pl = %c; op = %c\n", fil.pl, fil.op);
-			printf("h = %d; w = %d\n", fil.h, fil.w);
-			print_map(fil.map);
-			printf("\npiece before\n");
-			printf("pc_h = %d; pc_w = %d\n", fil.pc_h, fil.pc_w);
-			printf("offset_x = %d; offset_y = %d\n", fil.offset_x, fil.offset_y);
-			print_map(fil.pc);
-			*/
+		heat_map(&fil);
 		craft_piece(&fil);
-		/*
-		   printf("\npiece after\n");
-		   printf("pc_h = %d; pc_w = %d\n", fil.pc_h, fil.pc_w);
-		   printf("offset_x = %d; offset_y = %d\n", fil.offset_x, fil.offset_y);
-		   print_map(fil.pc);
-		   printf("\n\n");
-		   print_hmap(fil);
-		   printf("\n\n");
-		   */
 		get_coord(&fil);
 		free_fil(&fil);
 	}

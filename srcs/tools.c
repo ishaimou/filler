@@ -6,13 +6,13 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 23:22:58 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/26 22:04:45 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/27 09:59:38 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-int		is_dots(char *s)
+int			is_dots(char *s)
 {
 	while (*s)
 	{
@@ -23,7 +23,7 @@ int		is_dots(char *s)
 	return (1);
 }
 
-void	init_fil(t_filler *fil)
+void		init_fil(t_filler *fil)
 {
 	fil->map = NULL;
 	fil->hmap = NULL;
@@ -38,72 +38,61 @@ void	init_fil(t_filler *fil)
 	fil->op = 0;
 	fil->pos_x = -1;
 	fil->pos_y = -1;
+	fil->t_x = -1;
+	fil->t_y = -1;
 	fil->flag = 0;
 	fil->x_coord = 0;
 	fil->y_coord = 0;
 	fil->score = INT_MAX;
 }
 
-void	free_dbl(char ***tab)
-{
-	int		i;
-
-	i = 0;
-	while ((*tab)[i])
-	{
-		free((*tab)[i]);
-		i++;
-	}
-	free(*tab);
-	*tab = NULL;
-}
-
-void	free_hmap(int ***tab, int size)
-{
-	int				i;
-
-	i = 0;
-	while (i < size)
-	{
-		free((*tab)[i]);
-		i++;
-	}
-	free(*tab);
-	*tab = NULL;
-}
-
-void	free_fil(t_filler *fil)
-{
-	free_dbl(&fil->map);
-	free_dbl(&fil->pc);
-	free_hmap(&fil->hmap, fil->h);
-}
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-void	print_map(char **map)
-{
-	while (*map)
-	{
-		printf("%s\n", *map);
-		map++;
-	}
-}
-
-void	print_hmap(t_filler *fil, int **hmap)
+void		reset_hmap(t_filler *fil)
 {
 	int		i;
 	int		j;
 
-	i = 0;
-	while (i < fil->h)
+	i = -1;
+	while (++i < fil->h)
 	{
-		j = 0;
-		while (j < fil->w)
+		j = -1;
+		while (++j < fil->w)
+			fil->hmap[i][j] = 0;
+	}
+}
+
+int			**clone_hmap(t_filler *fil)
+{
+	int		**tmp;
+	int		i;
+	int		j;
+
+	tmp = (int**)ft_memalloc(sizeof(int*) * fil->h);
+	i = -1;
+	while (++i < fil->h)
+	{
+		tmp[i] = (int*)ft_memalloc(sizeof(int) * fil->w);
+		j = -1;
+		while (++j < fil->w)
+			tmp[i][j] = fil->hmap[i][j];
+	}
+	return (tmp);
+}
+
+void		merge_hmap(t_filler *fil, int **tmp, int flag)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < fil->h)
+	{
+		j = -1;
+		while (++j < fil->w)
 		{
-			printf("%2d ", hmap[i][j]);
-			j++;
+			if (tmp[i][j] == -2)
+				fil->hmap[i][j] = -2;
+			if (tmp[i][j] == -1 && flag == 1)
+				fil->hmap[i][j] = -1;
 		}
-		printf("\n");
-		i++;
 	}
 }

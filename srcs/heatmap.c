@@ -6,17 +6,17 @@
 /*   By: ishaimou <ishaimou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/26 05:48:08 by ishaimou          #+#    #+#             */
-/*   Updated: 2019/05/26 06:12:22 by ishaimou         ###   ########.fr       */
+/*   Updated: 2019/05/27 09:56:47 by ishaimou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static void	heat_up(t_filler *fil, int i, int j, int x)
+void		heat_up(t_filler *fil, int i, int j, int x)
 {
 	int		k;
 
-	k = (x == 0 || x == -2) ? -1 : x;
+	k = (x == 0) ? -1 : x;
 	if (i + 1 < fil->h && fil->hmap[i + 1][j] == k)
 		fil->hmap[i][j] = x + 1;
 	if (i - 1 >= 0 && fil->hmap[i - 1][j] == k)
@@ -35,42 +35,7 @@ static void	heat_up(t_filler *fil, int i, int j, int x)
 		fil->hmap[i][j] = x + 1;
 }
 
-static int	**clone_hmap(t_filler *fil)
-{
-	int		**tmp;
-	int		i;
-	int		j;
-
-	tmp = (int**)ft_memalloc(sizeof(int*) * fil->h);
-	i = -1;
-	while (++i < fil->h)
-	{
-		tmp[i] = (int*)ft_memalloc(sizeof(int) * fil->w);
-		j = -1;
-		while (++j < fil->w)
-			tmp[i][j] = fil->hmap[i][j];
-	}
-	return (tmp);
-}
-
-static void	merge_hmap(t_filler *fil, int **tmp)
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	while (++i < fil->h)
-	{
-		j = -1;
-		while (++j < fil->w)
-		{
-			if (tmp[i][j] == -2)
-				fil->hmap[i][j] = -2;
-		}
-	}
-}
-
-void		generate_heat(t_filler *fil)
+static void	generate_heat(t_filler *fil)
 {
 	int		i;
 	int		j;
@@ -93,6 +58,16 @@ void		generate_heat(t_filler *fil)
 		}
 		i = -1;
 	}
-	merge_hmap(fil, tmp);
+	merge_hmap(fil, tmp, 0);
 	free_hmap(&tmp, fil->h);
+}
+
+void		heat_map(t_filler *fil)
+{
+	if (fil->t_y == -1 && fil->t_y == -1)
+		get_target_coord(fil);
+	if (fil->map[fil->t_y][fil->t_x] == '.')
+		heatmap_target(fil);
+	else
+		generate_heat(fil);
 }
